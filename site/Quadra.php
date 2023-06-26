@@ -55,8 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="password">Senha:<br></label>
         <input type="password" id="senha" name="password" value="<?php echo $_SESSION['password']; ?>"> <img id="olho"
         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII=" /><br>
+       
         <label for="dtNasci">Data de Nascimento:<br></label>
         <input type="text" name="dtNasci" value="<?php echo $_SESSION['dtNasci']; ?>"><br><br>
+        
+        <label for="valorQuadra">Valor aluguel da quadra<br></label>
+        <input type="text" name="valorQuadra" value="<?php echo $_SESSION['dtNasci']; ?>"><br><br>
+        
         <input type="submit" value="Atualizar">
     </form>
 </body>

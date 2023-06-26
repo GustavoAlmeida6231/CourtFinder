@@ -1,0 +1,68 @@
+body {
+    background-color: #201B2C;
+    color: #fff;
+}
+
+::selection {
+    display: none;
+}
+
+.btn-voltar {
+    background-color: #006400;
+    color: #fff;
+    border: none;
+    box-shadow: 0 2px 4px rgba(33, 21, 64, 0.3);
+}
+
+.btn-redefinir {
+    background-color: #2e8b57;
+    color: #fff;
+    border: none;
+    box-shadow: 0 2px 4px rgba(33, 21, 64, 0.3);
+}
+
+.btn-voltar:hover {
+    background-color: #211540;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(192, 144, 240, 0.5);
+}
+
+.btn-redefinir:hover {
+    background-color: #005523;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(144, 238, 144, 0.5);
+}
+
+input[type="email"] {
+    box-shadow: 0 2px 4px rgba(192, 144, 240, 0.3);
+}
+
+.form-container {
+    margin-top: -50px;
+    padding: 20px;
+}
+
+.logo {
+    position: absolute;
+    top: -23rem ;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 100%;
+    background-color: transparent;
+    border: 0;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo-link:hover .text-hover-green {
+    color: #2e8b57;
+}
+
+.logo-text {
+    color: #fff;
+}

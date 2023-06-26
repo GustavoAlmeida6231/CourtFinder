@@ -12,22 +12,22 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
 
     $login = mysqli_real_escape_string($conexao, $login);
-    $password = mysqli_real_escape_string($conexao, $password);
 
-    $sql = "SELECT * FROM cadastro_usuario WHERE login='$login' AND password='$password'";
+    $sql = "SELECT * FROM cadastro_usuario WHERE login='$login'";
     $result = $conexao->query($sql);
 
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $_SESSION['usuario_id'] = $row['id'];
-        $_SESSION['usuario'] = $row['login'];
-        $_SESSION['email'] = $row['email'];
-        $_SESSION['password'] = $row['password'];
-        $_SESSION['dtNasci'] = $row['dataNascimento'];
-        header("Location:./site/index.php");
-        exit();
+        $hashedPassword = $row['password'];
+        if (password_verify($password, $hashedPassword)) {
+            $_SESSION['usuario_id'] = $row['id'];
+            header("Location:../site/index.php");
+            exit();
+        } else {
+            header("Location:../login.html");
+        }
     } else {
-        header("Location:login.php");
+        header("Location:../login.html");
     }
 
     $conexao->close();
