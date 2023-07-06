@@ -21,27 +21,28 @@ if (isset($_POST['cadastrado'])) {
         echo '<script>
             var resposta = alert("Usuário já existe!");
             if (resposta) {
-                window.location.href = "../login.html";
+                window.location.href = "../loginCadastro.html";
             } else {
-                window.location.href = "../login.html";
+                window.location.href = "../loginCadastro.html";
             }
         </script>';
     } else {
         // Defina o nível inicial do cliente
         $nivel = 1;
+        $dono = 0;
 
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = $conexao->prepare("INSERT INTO cadastro_usuario (login, email, regiao, celular, dataNascimento, password, nivel) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $sql->bind_param("ssssssi", $login, $email, $regiao, $celular, $dataNasc, $hashedPassword, $nivel);
+        $sql = $conexao->prepare("INSERT INTO cadastro_usuario (login, email, regiao, celular, dataNascimento, password, nivel, dono) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $sql->bind_param("ssssssii", $login, $email, $regiao, $celular, $dataNasc, $hashedPassword, $nivel, $dono);
         
         if ($sql->execute() === TRUE) {
             echo '<script>
                 var resposta = alert("Usuário cadastrado com sucesso!");
                 if (resposta) {
-                    window.location.href = "../login.html";
+                    window.location.href = "../loginCadastro.html";
                 } else {
-                    window.location.href = "../login.html";
+                    window.location.href = "../loginCadastro.html";
                 }
             </script>';
         } else {

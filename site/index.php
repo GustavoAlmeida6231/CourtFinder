@@ -1,97 +1,257 @@
-<?php
-session_start();
-
-// Conexão com o banco de dados
-include_once('../configuracoes/config.php');
-
-// Verifica se o usuário está logado
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location:../login.php");
-    exit;
-}
-
-// Consulta os dados do usuário
-$sql = "SELECT login, email, dataNascimento, password , nivel FROM cadastro_usuario WHERE id = {$_SESSION['usuario_id']}";
-$resultado = $conexao->query($sql);
-
-if ($resultado->num_rows > 0) {
-    $row = $resultado->fetch_assoc();
-    $login = $row['login'];
-    $email = $row['email'];
-    $dataNascimento = $row['dataNascimento'];
-    $password = $row['password'];
-    $nivelCliente = $row['nivel'];
-} else {
-    echo "Nenhum resultado encontrado.";
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $login = $_POST['login'];
-    $email = $_POST['email'];
-    $dtNasci = $_POST['dtNasci'];
-
-    $sql = "UPDATE cadastro_usuario SET login='$login', email='$email', dataNascimento='$dtNasci', password='$password' WHERE id={$_SESSION['usuario_id']}";
-
-    if ($conexao->query($sql) === TRUE) {
-        echo "SUCESSO ";
-        header("Location:../login.php");
-        exit;
-    } else {
-        echo "Erro ao atualizar as informações do usuário: " . $conexao->error;
-    }
-
-    $conexao->close();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CourtFinder • Home</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+  <title>Shop Court</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<style>
+  .navbar {
+    background-color: #49b307 !important;
+  }
 
-<body>
-    <h1>Seja bem-vindo • ID: <?php echo $_SESSION['usuario_id']; ?></h1>
-    <h2>Nível do cliente: <?php echo $nivelCliente; ?></h2>
+  .navbar-brand {
+    color: #fff;
+    text-shadow: 3px 0px 7px #290465,
+      -3px 0px 4px #290465,
+      0px 4px 4px #290465;
+    transition: 0.7s;
+  }
 
-    <h2>Alterar Informações do Usuário</h2>
+  .navbar-brand:hover {
+    color: #290465;
+  }
 
-    <form method="POST" action="">
-        <label for="login">Login:<br></label>
-        <input type="text" name="login" value="<?php echo $login; ?>"><br><br>
+  .navbar-brand,
+  .nav-link {
+    border-radius: 5px;
+  }
 
-        <label for="email">Email:<br></label>
-        <input type="email" name="email" value="<?php echo $email; ?>"><br><br>
+  .nav-link:hover {
+    background-color: #1B3C02;
+  }
 
-        <label for="password">Senha:<br></label>
-        <input type="password" id="senha" name="password"> <img id="olho"
-            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABDUlEQVQ4jd2SvW3DMBBGbwQVKlyo4BGC4FKFS4+TATKCNxAggkeoSpHSRQbwAB7AA7hQoUKFLH6E2qQQHfgHdpo0yQHX8T3exyPR/ytlQ8kOhgV7FvSx9+xglA3lM3DBgh0LPn/onbJhcQ0bv2SHlgVgQa/suFHVkCg7bm5gzB2OyvjlDFdDcoa19etZMN8Qp7oUDPEM2KFV1ZAQO2zPMBERO7Ra4JQNpRa4K4FDS0R0IdneCbQLb4/zh/c7QdH4NL40tPXrovFpjHQr6PJ6yr5hQV80PiUiIm1OKxZ0LICS8TWvpyyOf2DBQQtcXk8Zi3+JcKfNafVsjZ0WfGgJlZZQxZjdwzX+ykf6u/UF0Fwo5Apfcq8AAAAASUVORK5CYII=" /><br><br>
+  .btn:focus,
+  .btn:active {
+    background-color: #1B3C02 !important;
+  }
 
-        <label for="dtNasci">Data de Nascimento:<br></label>
-        <input type="text" name="dtNasci" value="<?php echo $dataNascimento; ?>"><br><br>
-        <input type="submit" value="Atualizar">
-    </form>
 
-    <script>
-        var senha = $('#senha');
-        var olho = $("#olho");
+  .dropdown-menu {
+    background-color: green;
+  }
 
-        olho.mousedown(function () {
-            senha.attr("type", "text");
-        });
+  .dropdown-item:hover {
+    background-color: #1B3C02 !important;
+  }
 
-        olho.mouseup(function () {
-            senha.attr("type", "password");
-        });
-        olho.mouseout(function () {
-            senha.attr("type", "password");
-        });
-    </script>
+  .card {
+    background-color: rgb(2, 110, 2);
+    box-shadow: 0 4px 8px 0 rgba(138, 43, 226, 0.3);
+    border-radius: 20px;
+  }
+
+  .img-fluid {
+    width: 100%;
+    height: auto;
+  }
+
+
+  .fa-star.checked {
+    color: #201B2C;
+  }
+
+  .btn-green {
+    background-color: #49b307;
+    color: #fff;
+  }
+
+  .btn-green:hover {
+    background-color: #49b307;
+    color: #201B2C;
+    box-shadow: 0 4px 6px 0 rgba(138, 43, 226, 0.3);
+  }
+
+  .form-container {
+    background-color: #49b307;
+    border-radius: 10px;
+    height: 4rem;
+    margin-left: 5.5rem;
+    width: 70rem;
+    color: #fff;
+    box-shadow: 0 4px 6px 0 rgba(138, 43, 226, 0.3);
+  }
+
+  .form-select {
+    background-color: #201B2C;
+    color: #fff;
+    width: 15rem;
+    box-shadow: 0 4px 6px 0 rgba(138, 43, 226, 0.3);
+  }
+
+  .top-form {
+    font-size: 1.3rem;
+  }
+
+  @media (max-width: 767px) {
+    .top-form {
+      font-size: 15px !important;
+      text-align: start !important;
+      margin-top: 8% !important;
+      margin-left: 20px !important;
+    }
+
+    .form-select {
+      width: 125% !important;
+      margin-left: 10px !important;
+    }
+
+    .form-container {
+      margin-left: 8px !important;
+      width: 95% !important;
+      height: 95% !important;
+    }
+  }
+</style>
+
+<body style="background-color: #201b2c; height: 100vh; width: 100vw">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand ms-5" href="#">COURTFINDER</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto mb-lg-2 mt-2 p-2">
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" aria-current="page" href="#">HOME</a>
+          </li>
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" href="#">MODALIDADES</a>
+          </li>
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" aria-current="page" href="#">QUEM SOMOS</a>
+          </li>
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" aria-current="page" href="./cadastrarQuadra.php">CADASTRE SUA QUADRA</a>
+          </li>
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" aria-current="page" href="../loginCadastro.html">LOGIN</a>
+          </li>
+          <div class="dropdown p-2" data-bs-theme="success">
+            <button class="btn dropdown-toggle text-light form-control border-success" type="button" id="dropdownMenuButtonSuccess" data-bs-toggle="dropdown">
+              Mais Opções!
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSuccess">
+              <li><a class="dropdown-item text-light" href="#">Perfil</a></li>
+              <li><a class="dropdown-item text-light" href="#">Configurações de Conta</a></li>
+              <li><a class="dropdown-item text-light" href="#">Recentes</a></li>
+              <li><a class="dropdown-item text-light" href="#">Cadastrar-se</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item text-light" href="#">Ajuda</a></li>
+            </ul>
+          </div>
+        </ul>
+        <form class="d-flex p-1" role="search">
+          <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+          <button class="btn form-control border-success text-light me-5" type="submit">Pesquisar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="container">
+    <br>
+    <div class="form-container col-md-12">
+      <form>
+        <div class="d-flex col-10 mb-3">
+          <strong>
+            <p class="top-form mt-1 ms-5 m-0">ENCONTRE QUADRAS ESPORTIVAS <br> PERTO DE VOCÊ!</p>
+          </strong>
+          <div class="row justify-content-end">
+            <div class="col-md-6">
+              <select class="form-select mt-3 " aria-label="Estado">
+                <option selected>Selecione o Estado</option>
+                <!-- Adicione aqui as opções de estado -->
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select mt-3 " aria-label="Cidade">
+                <option selected>Selecione a Cidade</option>
+                <!-- Adicione aqui as opções de cidade -->
+              </select>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+      <?php
+      include_once('../configuracoes/config.php');
+
+      // Consulta para obter os dados
+      $sql = "SELECT * FROM courtfinder.quadra";
+      $result = $conexao->query($sql);
+
+      // Verifica se há resultados
+      if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+          $nome_espaco = $row['nome_espaco'];
+          $descricao_espaco = $row['descricao_espaco'];
+          $valor_espaco = $row['valor_espaco'];
+          $avaliacao_espaco = $row['avaliacao_espaco'];
+          $id_espaco = $row['id_espaco'];
+          $nome = $row['img_nome'];
+          $conteudo = $row['img_conteudo'];
+          $imagemData = base64_encode($conteudo);
+
+          // Criação do card HTML
+          echo '<div class="col-md-4 mt-5">';
+          echo '<div class="card rounded">';
+          echo '<img src="data:image/jpeg;base64,' . $imagemData . '" alt="' . $nome . '" class="img-fluid" alt="Product Image">';
+          echo '<div class="card-body text-light">';
+          echo '<h5 class="card-title">' . $nome_espaco . '</h5>';
+          echo '<p class="card-text">' . $descricao_espaco . '</p>';
+          echo '<p class="card-text">';
+          echo '<strong>Valor/Hora:</strong> R$ ' . $valor_espaco;
+          echo '</p>';
+          echo '<p class="card-text">';
+          echo '<strong>Aprovação:</strong> ';
+
+          for ($i = 1; $i <= $avaliacao_espaco; $i++) {
+            echo '<span class="fa fa-star checked"></span>';
+          }
+
+          echo '</p>';
+          echo '<form method="post" >';
+          echo '<input type="hidden" name="espaco_id" value="' . $id_espaco . '">';
+          echo '<button type="submit" class="btn btn-green">Reservar Espaço</button>';
+          echo '<input type="hidden" name="espaco_id" value="' . $id_espaco . '">';
+          echo '<button type="submit" class="btn ms-4 btn-green">Avaliar Espaço</button>';
+          echo '</form>';
+          echo '</div>';
+          echo '</div>';
+          echo '</div>';
+        }
+      } else {
+      }
+
+      // Fecha a conexão com o banco de dados
+      $conexao->close();
+      ?>
+    </div>
+  </div>
+  </div>
+  <br>
+  <br>
+  <br>
 </body>
 
 </html>

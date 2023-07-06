@@ -1,0 +1,123 @@
+/** @format */
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0 auto;
+  box-sizing: border-box;
+}
+
+button {
+  border: none;
+}
+
+body {
+  font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  width: 100vw;
+  background: #201b2c;
+  color:#fff;
+}
+
+/* @@@@@@@@@ NAVGATION @@@@@@@@ */
+
+a {
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+.logo {
+  font-size: 24px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  background: #317d03;
+  height: 8vh;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+}
+
+.nav-list li {
+  letter-spacing: 3px;
+  margin-left: 32px;
+}
+
+.mobile-menu {
+  display: none;
+  cursor: pointer;
+}
+
+.modal {
+  color: #201b2c;
+}
+
+.container p-5 my-5 border {
+  background: #317d03;
+}
+
+.perfil {
+      background-color: #317d03;
+}
+
+.button {
+  background-color: #317d03;
+  color:#201b2c;
+  position: relative;
+  bottom: 20px;
+  top: 20px;
+  left: 30%;
+}
+.button2 {
+  background-color: #317d03;
+  color:#201b2c;
+  
+}
+
+.button3 {
+  background-color: #201b2c;
+  color:#317d03;
+  position: relative;
+  left: 145px;
+}
+
+.janela {
+  background-color: #201b2c ;
+}
+
+.cabecalho {
+  background-color: #317d03;
+}
+
+.imagem {
+  position: relative;
+  left: 185px;
+}
+
+.form {
+  position: relative;
+  top: 80px;
+}
+
+.form2 {
+  position: relative;
+  top: 30px;
+}
+
+
+
+
+

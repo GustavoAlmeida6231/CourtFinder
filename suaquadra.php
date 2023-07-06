@@ -36,17 +36,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //Recipients
             $mail->addAddress("$emailToCheck");
             $mail->isHTML(true);
-            $mail->Subject = 'Seja Bem Vindo! - Recupere sua senha do Contfinder';
+            $mail->Subject = 'Seja Bem Vindo! - Preencha o Formulario do Contfinder';
             $mail->Body = '
                 <html>
                 <head>
-                    <title>Redefinicao de Senha</title>
+                    <title>Sua Quadra Joga com a Gente!</title>
                     <meta charset="UTF-8">
                 </head>
                 <body>
-                    <h1>Redefinicao de Senha</h1>
-                    <p>Clique no link abaixo para Redefinir a Senha:</p>
-                    <a href="http://localhost/OFICIAL/redefinir.php">Redefinir Senha</a>
+                    <h1>Preencha o Formulario</h1>
+                    <p>Apos Preencher o formulario aguarde a resposta!</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZNoa5NYh8WumWK_lokdw-pAnFawqyNv0BXIyhNKMe2US9gw/viewform">Formulario Para Validacao!</a>
                 </body>
                 </html>
             ';
@@ -76,21 +76,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <a href="login.html" class="logo-link">
+    <a href="./loginCadastro.html" class="logo-link">
         <span class="text-hover-green">COURTFINDER ®</span>
     </a>
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="col-md-6 form-container">
             <img src="./img/logo.png" class="logo" alt="Logo">
             <form action="" method="POST" autocomplete="">
-                <h2 class="text-center">Esqueceu a Senha?</h2>
+                <h2 class="text-center">Quer cadastrar sua quadra?</h2>
                 <p class="text-center">Escreva seu email abaixo!</p>
                 <br>
                 <div class="form-group">
                     <input class="form-control" type="email" name="email" placeholder="Digite seu e-mail">
                 </div>
                 <div class="form-group">
-                    <input class="form-control button btn-redefinir mr-2" type="submit" name="check-email" value="Redefinir senha">
+                    <input class="form-control button btn-redefinir mr-2" type="submit" name="check-email" value="Enviar">
                     <input class="form-control button btn-voltar mr-2 mt-2" type="submit" name="voltar" value="Voltar">
                 </div>
                 <p class="text-center"><?php echo $msg ?></p>

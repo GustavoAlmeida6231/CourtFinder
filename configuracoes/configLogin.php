@@ -21,13 +21,13 @@ if (isset($_POST['login'])) {
         $hashedPassword = $row['password'];
         if (password_verify($password, $hashedPassword)) {
             $_SESSION['usuario_id'] = $row['id'];
-            header("Location:../site/index.php");
+            header("Location:../site/perfil.php");
             exit();
         } else {
-            header("Location:../login.html");
+            header("Location:../loginCadastro.html");
         }
     } else {
-        header("Location:../login.html");
+        header("Location:../loginCadastro.html");
     }
 
     $conexao->close();
