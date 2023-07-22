@@ -100,26 +100,26 @@ $conexao->close();
       <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto mb-lg-2 mt-2 p-2">
           <li class="nav-item me-3 p-2">
-            <a class="nav-link active text-light" aria-current="page" href="./index.php">HOME</a>
+          <a class="nav-link active text-light" aria-current="page" href="../index.html">HOME</a>
           </li>
           <li class="nav-item me-3 p-2">
-            <a class="nav-link active text-light" href="#">MODALIDADES</a>
+            <a class="nav-link active text-light" href="./index.php">QUADRAS</a>
           </li>
           <li class="nav-item me-3 p-2">
             <a class="nav-link active text-light" aria-current="page" href="#">QUEM SOMOS</a>
           </li>
           <li class="nav-item me-3 p-2">
-            <a class="nav-link active text-light" aria-current="page" href="#">CADASTRE SUA QUADRA</a>
+            <a class="nav-link active text-light" aria-current="page" href="./cadastrarQuadra.php">CADASTRE SUA QUADRA</a>
           </li>
           <li class="nav-item me-3 p-2">
-            <a class="nav-link active text-light" aria-current="page" href="../loginCadastro.html">LOGIN</a>
+            <a class="nav-link active text-light" aria-current="page" href="../suaquadra.php">TENHA SUA QUADRA</a>
           </li>
           <div class="dropdown p-2" data-bs-theme="success">
             <button class="btn dropdown-toggle text-light form-control border-success" type="button" id="dropdownMenuButtonSuccess" data-bs-toggle="dropdown">
               Mais Opções!
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSuccess">
-              <li><a class="dropdown-item text-light" href="#">Perfil</a></li>
+            <li><a class="dropdown-item text-light" href="../loginCadastro.html">Perfil</a></li>
               <li><a class="dropdown-item text-light" href="#">Configurações de Conta</a></li>
               <li><a class="dropdown-item text-light" href="#">Recentes</a></li>
               <li><a class="dropdown-item text-light" href="#">Cadastrar-se</a></li>
