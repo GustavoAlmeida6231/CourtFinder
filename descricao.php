@@ -8,6 +8,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 </head>
 <style>
   .navbar {
@@ -61,11 +63,10 @@
   box-shadow: 0 4px 8px 0 rgba(138, 43, 226, 0.3);
   }
 
-  .img-fluid {
-    width: 100%;
-    height: auto;
-  }
-
+  .card-img {
+  width: 50%;
+  height: auto;
+}
 
   .fa-star.checked {
     color: #201B2C;
@@ -103,24 +104,23 @@
     font-size: 1.3rem;
   }
 
-  @media (max-width: 767px) {
-    .top-form {
-      font-size: 15px !important;
-      text-align: start !important;
-      margin-top: 8% !important;
-      margin-left: 20px !important;
-    }
+  .miniaturas {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  }
 
-    .form-select {
-      width: 125% !important;
-      margin-left: 10px !important;
-    }
+  .miniaturas li img {
+  max-width: 150px; 
+  height: auto;
+  }
 
-    .form-container {
-      margin-left: 8px !important;
-      width: 95% !important;
-      height: 95% !important;
-    }
+  .miniaturas li {
+  margin-right: 10px;
+  }
+
+  h1 {
+    margin-left: 1rem;
   }
 </style>
 
@@ -198,66 +198,49 @@
         </div>
       </form>
     </div>
+
+  <div class="container my-5 text-light">
+
+    <h1>Detalhes da Quadra</h1>
+
     <div class="row">
-    <?php
-      include_once('../configuracoes/config.php');
 
-      // Consulta para obter os dados
-      $sql = "SELECT * FROM courtfinder.quadra";
-      $result = $conexao->query($sql);
+    <div class="col-md-6">
+  <div class="container card">
+          <img src="img/project-1.jpg" style="width: 37rem; height: 40rem;" class="rounded">
+  </div>
+</div>
+      <div class="col-md-6">
+        <h2 class="card-title">Nome da Quadra</h2>
+        
+        <p class="card-text">
+          Descrição do produto...
+        </p>
 
-      // Verifica se há resultados
-      if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-          $nome_espaco = $row['nome_espaco'];
-          $descricao_espaco = $row['descricao_espaco'];
-          $valor_espaco = $row['valor_espaco'];
-          $avaliacao_espaco = $row['avaliacao_espaco'];
-          $id_espaco = $row['id_espaco'];
-          $nome = $row['img_nome'];
-          $conteudo = $row['img_conteudo'];
-          $imagemData = base64_encode($conteudo);
+        <h4>Especificações:</h4>
+        <ul>
+          <li>Especificação 1</li>
+          <li>Especificação 2</li>
+          <li>Especificação 3</li>
+        </ul>
 
-          // Criação do card HTML
-          echo '<div class="col-md-4 mt-5">';
-          echo '<div class="card rounded">';
-          echo '<img src="data:image/jpeg;base64,' . $imagemData . '" alt="' . $nome . '" class="img-fluid" alt="Product Image">';
-          echo '<div class="card-body text-light">';
-          echo '<h5 class="card-title">' . $nome_espaco . '</h5>';
-          echo '<p class="card-text">' . $descricao_espaco . '</p>';
-          echo '<p class="card-text">';
-          echo '<strong>Valor/Hora:</strong> R$ ' . $valor_espaco;
-          echo '</p>';
-          echo '<p class="card-text">';
-          echo '<strong>Aprovação:</strong> ';
+        <h4>Informações adicionais:</h4>
+        <p>Mais informações...</p>
+        
+        <button class="btn btn-green" onclick="window.open('#','_blank');">Reservar</button>
 
-          for ($i = 1; $i <= $avaliacao_espaco; $i++) {
-            echo '<span class="fa fa-star checked"></span>';
-          }
+      </div>
 
-          echo '</p>';
-          echo '<form method="post" >';
-          echo '<input type="hidden" name="espaco_id" value="' . $id_espaco . '">';
-          echo '<button type="submit" class="btn btn-green">Reservar Espaço</button>';
-          echo '<input type="hidden" name="espaco_id" value="' . $id_espaco . '">';
-          echo '<button type="submit" class="btn ms-4 btn-green">Avaliar Espaço</button>';
-          echo '</form>';
-          echo '</div>';
-          echo '</div>';
-          echo '</div>';
-        }
-      } else {
-      }
+    </div>
 
-      // Fecha a conexão com o banco de dados
-      $conexao->close();
-      ?>
-    </div> 
+  </div>
+
   </div>
   </div>
   <br>
   <br>
   <br>
 </body>
-
 </html>
+
+<!--  -->
