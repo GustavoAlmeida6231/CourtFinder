@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Usuário</title>
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/index.css'>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+    <nav>
+        <a class="logo" href="./index.html">CourtFinder</a>
+        <div class="mobile-menu">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+        <ul class="nav-list">
+            <li><a href="./site/index.php">Home</a></li>
+            <li><a href="#">Modalidades</a></li>
+            <li><a href="./index.html">Quem somos</a></li>
+            <li><a href="#">Cadastre sua quadra</a></li>
+        </ul>
+    </nav>
+
+    </div>
+
+    <div id="mainlog">
+
+        <div class="leftlogin">
+            <h1>Faça login<br>E entre para o nosso time!</h1>
+            <img id="jack" src="./img/boneco.svg" alt="Jack">
+        </div>
+
+        <div class="rightlogin">
+
+            <div id="container">
+                <div class="buttonsForm">
+                    <div class="btnColor"></div>
+                    <button id="btnSignin" onclick="diminuirDiv()">Login</button>
+                    <button id="btnSignup" onclick="aumentarDiv()">Cadastro</button>
+                </div>
+
+                <form id="signin" method="POST" action="./configuracoes/configLogin.php">
+                    <input type="hidden" name="login" value="login-requerimento">
+                    <p id="emaillabel">Login</P>
+                    <input type="text" id="login" name="login" placeholder="Email" required />
+                    <p id="senhalabel">Senha</P>
+                    <input type="password" id="senha" name="password" placeholder="Senha" required />
+                    <div class="divCheck">
+                        <p id="esqueceu">Esqueceu a senha? <a href="email.php">Clique aqui!</a></P>
+                    </div>
+                    <button class="btn btn-default" id="entrar" type="submit">Entrar</button>
+                </form>
+
+                <form method="POST" action="./configuracoes/configRegistro.php" class="row cadastro_valid" id="signup"
+                    onsubmit="
+                    try{
+                        const valorlogin = this.login.value;
+                        const valoremail = this.email.value;
+                        const valorestado = this.regiao.value;
+                        const valorcelular = this.celular.value;
+                        const valordatanascimento = this.dtnasc.value;
+                        const valorSenha = this.senha.value;
+                        const valorSenhaConfirmada = this.confirmarSenha.value;
+                if(valorlogin == ''){
+                    alerta('warning', 'Oops...',
+                    'O login não pode estar vazio');
+                  return false;
+                }else if(valoremail == ''){
+                    alerta('warning', 'Oops...',
+                    'O email não pode estar vazio!');
+                  return false;
+                }else if(valorestado == ''){
+                    alerta('warning', 'Oops...',
+                    'Selecione um estado!');
+                  return false;
+                }else if(!validacelular(this.celular.value)){
+                    alerta('warning', 'Oops...',
+                    'Preencha corretamente o celular!');
+                  return false;
+                }else if(valordatanascimento == ''){
+                    alerta('warning', 'Oops...',
+                    'A data de nascimento nao pode estar vazio!');
+                  return false;
+                }else if(!validaSenha(this.senha.value)){
+                    alerta('warning', 'Oops...',
+                    'Preencha corretamente a senha!')
+                  return false;
+                }else if(!validaSenhaConfirmada(valorSenhaConfirmada, valorSenha)){
+                    alerta('warning', 'Oops...',
+                    'As senhas não são as mesmas!')
+                  return false; 
+                }
+                    }catch(e){
+                    alert('Erro: '+e.message);
+                    }
+                    ">
+                    <input type="hidden" name="cadastrado" value="cadastrar-usuario">
+                    <label for="login" class="labelregistro">Login</label>
+                    <input type="text" id="login" name="login" placeholder="Login" />
+                    <label for="email" class="labelregistro">E-mail</label>
+                    <input type="text" id="email" name="email" placeholder="Email" />
+                    <label for="dtnasc" class="labelregistro">Data de nascimento</label>
+                    <input type="text" data-js="data" id="dtnasc" name="dtnasc" placeholder="dd/mm/aaaa" maxlength="10"
+                        class="form-control">
+                    <label for="senha" class="labelregistro">Senha</label>
+                    <input type="password" id="senha" name="password" placeholder="Senha" />
+                    <label for="confirmarsenha" class="labelregistro">Confirmar senha</label>
+                    <input type="password" id="confirmarSenha" placeholder="Confirmar senha" />
+                    <p id="lembrete">Sua senha deve conter:<br>- Pelo menos uma letra de A-Z<br>- Pelo menos um numero
+                        de 1-9</p>
+                    <label for="celular" class="labelregistro">Número de telefone</label>
+                    <input type="text" id="celular" data-js="celular" name="celular" maxlength="15"
+                        placeholder="(99) 99999-9999" />
+                    <label for="regiao" class="labelregistro">Região</label>
+                    <select class="campos" id="regiao" name="regiaoGeral" class="form-control" placeholder="Estado">
+                        <option value=""></option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="SP">São Paulo</option>
+                    </select>
+                    <div class="divCheck">
+                    </div>
+                    <button id="botaocada" class="btn btn-default" type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+        function alerta(icon, title, text, footer) {
+            Swal.fire({
+                icon: icon,
+                title: title,
+                text: text,
+                footer: footer
+            });
+        }
+        //--------------------Funções--------------------------//
+        function validacelular(celular) {
+            var DDD = celular.slice(1, 3);
+
+
+            for (var t = 0; t < 15; t++) {
+                if (t == 10) {
+                    if (celular[t] != "-") {
+                        console.log("Formato inválido, faltando hyphen!");
+                        return false;
+                    }
+                } else if (
+                    celular[t] != "0" &&
+                    celular[t] != "(" &&
+                    celular[t] != ")" &&
+                    celular[t] != " " &&
+                    !parseInt(celular[t])
+                ) {
+                    console.log("Não é número válido na posição " + t);
+                    return false;
+                }
+            }
+            if (celular.length != 15) {
+                console.log("Tamanho inválido!");
+                return false;
+            } else if (celular.slice(0, 1) != "(") {
+                console.log("Formato de DDD errado!");
+                return false;
+            } else if (celular.slice(3, 4) != ")") {
+                console.log("Formato de DDD2 errado!");
+                return false;
+            } else if (celular.slice(4, 5) != " ") {
+                console.log(
+                    'Formato de celular errado! "sem espaço entre DDD e o número"'
+                );
+                return false;
+            } else if (celular.slice(10, 11) != "-") {
+                console.log('Formato de celular errado! "faltando um -"');
+                return false;
+            }
+            if (DDD != "31" && DDD != "32" && DDD != "33" && DDD != "11") {
+                console.log("DDD invalido!" + DDD);
+                return false;
+            } else {
+                console.log("O celular é valido!");
+                return true;
+            }
+        }
+
+        function validaSenha(senha) {
+            const regexLetras = /[a-zA-Z]/;
+            const regexEspecial = /[^a-zA-Z0-9]/;
+            const regexNumeros = /[0-9]/;
+
+            if (senha.length < 8) {
+                alert("A senha deve ter pelo menos 8 caracteres.");
+                return false;
+            }
+            if (!regexLetras.test(senha)) {
+                alert("A senha deve conter pelo menos um letra.");
+                return false;
+            }
+
+            if (!regexEspecial.test(senha)) {
+                alert("A senha deve conter pelo menos um caracter especial.");
+                return false;
+            }
+
+            if (!regexNumeros.test(senha)) {
+                alert("A senha deve conter pelo menos um número.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function validaSenhaConfirmada(confirmarSenha, senha) {
+            const SenhaConfirmada = confirmarSenha;
+            const SenhaPadrao = senha;
+
+            if (SenhaPadrao !== SenhaConfirmada) {
+                alert("As senhas não correspondem.");
+                return false;
+            }
+
+            return true;
+        }
+
+
+
+
+
+        //---------------------Mascaras------------------------
+
+        const mask = {
+            celular(value) {
+                return (
+                    value
+                        //Digitar apenas números
+                        .replace(/\D/g, "")
+                        //colocar os () do DDD
+                        .replace(/(\d{2})(\d)/, "($1) $2")
+                        //colocar o - do número
+                        .replace(/(\d{5})(\d)/, "$1-$2")
+                );
+            },
+            data(value) {
+                return (
+                    value
+                        //Digitar apenas numeros
+                        .replace(/\D/g, "")
+                        //colocar a primeira /
+                        .replace(/(\d{2})(\d)/, "$1/$2")
+                        //colocar a primeira /
+                        .replace(/(\d{2})(\d)/, "$1/$2")
+                );
+            },
+        };
+
+        const inputName = document.querySelector("#textinput");
+
+        console.log(inputName);
+
+        // pega todos os imputs e retorna uma nodelist, e cada item dela vai ser um dos imputs.
+        document.querySelectorAll("input[type=text],textarea").forEach(($input) => {
+            //field é para pegar cada fução de mascara que vai usar,
+            //(dataset = Serve para pegar informações de propriedades data-qualquer coisa, mas no caso é data-js)
+            const field = $input.dataset.js;
+
+            // Para cada imput irá atribuir um evento, (no caso o envento é do tipo input, que ira acionar a cada vez que for digitado)
+            $input.addEventListener(
+                "input",
+                (e) => {
+                    //callback irá retribuir um novo valor a cada vez que for digitado ao valor do imput
+                    e.target.value = mask[field](e.target.value);
+                },
+                false
+            );
+        });
+
+    </script>
+
+
+    <script src="./js/mobile-navbar.js"></script>
+
+</body>
+
+</html>

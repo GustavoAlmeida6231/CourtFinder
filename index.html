@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COURTFINDER</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg shadow bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand ms-5 text-light" href="#">COURTFINDER</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1024px-Hamburger_icon.svg.png);"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto mb-lg-2 mt-2 p-2">
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" aria-current="page" href="./site/index.php">HOME</a>
+          </li>
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" href="#">MODALIDADES</a>
+          </li>
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" aria-current="page" href="#">QUEM SOMOS</a>
+          </li>
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" aria-current="page" href="./suaquadra.php">TENHA SUA QUADRA</a>
+          </li>
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" aria-current="page" href="./loginCadastro.html">LOGIN</a>
+          </li>
+          <div class="dropdown p-2" data-bs-theme="success">
+              <button class="btn dropdown-toggle text-light form-control border-success" type="button" id="dropdownMenuButtonSuccess" data-bs-toggle="dropdown">
+                Mais Opções!
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSuccess">
+                <li><a class="dropdown-item text-light" href="#">Perfil</a></li>
+                <li><a class="dropdown-item text-light" href="#">Configurações de Conta</a></li>
+                <li><a class="dropdown-item text-light" href="#">Recentes</a></li>
+                <li><a class="dropdown-item text-light" href="#">Cadastrar-se</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-light" href="#">Ajuda</a></li>
+              </ul>
+            </div>
+        </ul>
+        <form class="d-flex p-1" role="search">
+          <input class="form-control me-2" list="datalistOptions" type="search" placeholder="Pesquisar" aria-label="Search">
+          <datalist id="datalistOptions">
+            <option value="Ajuda">
+            <option value="Sobre Nós">
+            <option value="Quadras">
+            <option value="Futebol">
+            <option value="Basquete">
+          </datalist>
+          <button class="btn form-control border-success text-light me-5" type="submit">Pesquisar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12 mt-5">
+        <!-- Carousel -->
+        <div id="demo" class="carousel slide" data-bs-ride="carousel">
+  
+          <!-- Indicators/dots -->
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+          </div>
+  
+          <!-- The slideshow/carousel -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="img/home-1.jpg" alt="Los Angeles" class="d-block w-100">
+              <div class="carousel-caption align-items-center h-50">
+                <h3 class="fs-1">QUADRAS ESPORTIVAS DE QUALIDADE</h3>
+                <p class="fs-4">Encontre as melhores quadras para alugar na sua região. <br> Tenha experiências incríveis praticando esportes.</br></p>
+                <a href="#" class="btn shadow">Saiba Mais</a>
+              </div>            
+            </div>
+            <div class="carousel-item">
+              <img src="img/home-1.jpg" alt="Chicago" class="d-block w-100">
+              <div class="carousel-caption align-items-center h-50">
+                <h3 class="fs-1">RESERVE ONLINE, SEM PERDER TEMPO</h3>
+                <p class="fs-4">Faça sua reserva de forma rápida e fácil através do nosso <br> site, aqui TUDO é mais fácil!</br></p>
+                <a href="#" class="btn shadow">Saiba Mais</a>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="img/home-1.jpg" alt="New York" class="d-block w-100">
+              <div class="carousel-caption align-items-center h-50">
+                <h3 class="fs-1">OPÇÕES PARA TODOS OS ESPORTES!!!</h3>
+                <p class="fs-4">Oferecemos uma ampla variedade de quadras esportivas,<br>desde futebol e basquete até tênis e vôlei.</br></p>
+                <a href="#" class="btn shadow">Saiba Mais</a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- Left and right controls/icons -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--CONTENT-->
+      <section id="about" class="about section-padding">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-4 col-md-12 col-12">
+                      <div class="about-img">
+                          <img src="img/about.jpg" alt="" class="img-fluid" style="border-radius: 8px; width: 450px; height: 350px;">
+                      </div>
+                  </div>
+                  <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
+                      <div class="about-text text-light">
+                            <h2>Aqui você encontra as Melhores <br/> E mais bem avaliadas Quadras!</h2>
+                            <p>Descubra e aproveite as melhores quadras esportivas disponíveis para aluguel. Nós oferecemos uma seleção cuidadosamente avaliada de quadras de alta qualidade para atender às suas necessidades esportivas. Desfrute de uma experiência esportiva excepcional em ambientes bem-mantidos e com instalações de primeira classe</p>
+                            <a href="#" class="btn shadow">Saiba Mais</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <section class="services section-padding" id="services">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="section-header text-center text-light pb-5">
+                          <h2>Aqui Você Encontra e Reserva, TUDO ONLINE!</h2>
+                          <p>Não existe nada melhor e mais prático. <br>Você entra, acha e reserva, simples assim!</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-12 col-md-12 col-lg-4">
+                    <div class="card text-white text-center pb-2">
+                        <div class="card-body text-light">
+                            <i class="bi bi-laptop"></i>
+                            <h3 class="card-title">CONFORTO</h3>
+                            <p class="lead">Descubra a praticidade de encontrar e reservar quadras esportivas diretamente do conforto do seu dispositivo.</p>
+                            <button class="btn shadow">Saiba Mais</button>
+                        </div>
+                    </div>
+                </div>
+                  <div class="col-12 col-md-12 col-lg-4">
+                      <div class="card text-white text-center pb-2">
+                          <div class="card-body">
+                            <i class="bi bi-journal"></i>
+                              <h3 class="card-title">SIMPLICIDADE</h3>
+                              <p class="lead">Nosso sistema online simplifica o processo de reserva, permitindo que você encontre e garanta a sua quadra ideal com apenas alguns cliques.</p>
+                              <button class="btn shadow">Saiba Mais</button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-12 col-md-12 col-lg-4">
+                      <div class="card text-white text-center pb-2">
+                          <div class="card-body">
+                            <i class="bi bi-intersect"></i>
+                              <h3 class="card-title">FLEXIBILIDADE</h3>
+                              <p class="lead">Desfrute de total conveniência e flexibilidade ao reservar sua quadra esportiva favorita pelo site, não perca tempo!</p>
+                              <button class="btn shadow">Saiba mais</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <section class="team section-padding" id="team">
+        <div class="container">
+          <div class="row justify-content-between">
+            <div class="col-md-12">
+              <div class="section-header text-center text-light pb-5">
+                <h2>Nosso time</h2>
+                <p>Essas são as mentes responsáveis pelo desenvolvimento da COURTFINDER.</p>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-between">
+            <div class="col-12 col-lg-3">
+              <div class="card text-center">
+                <div class="card-body text-light">
+                  <img src="img/team-1.jpg" alt="" class="img-fluid rounded-circle">
+                  <h3 class="card-title py-2">Gustavo Godinho</h3>
+                  <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi ipsam nostrum illo tempora esse quibusdam.</p>
+                  <p class="socials">
+                    <i class="bi bi-twitter mx-1"></i>
+                    <i class="bi bi-facebook mx-1"></i>
+                    <i class="bi bi-linkedin mx-1"></i>
+                    <i class="bi bi-instagram mx-1"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-3">
+              <div class="card text-center">
+                <div class="card-body text-light">
+                  <img src="img/team-2.jpg" alt="" class="img-fluid rounded-circle">
+                  <h3 class="card-title py-2">Luiz Valle</h3>
+                  <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi ipsam nostrum illo tempora esse quibusdam.</p>
+                  <p class="socials">
+                    <i class="bi bi-twitter mx-1"></i>
+                    <i class="bi bi-facebook mx-1"></i>
+                    <i class="bi bi-linkedin mx-1"></i>
+                    <i class="bi bi-instagram mx-1"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="card text-center">
+                  <div class="card-body text-light">
+                    <img src="img/team-3.jpg" alt="" class="img-fluid rounded-circle">
+                    <h3 class="card-title py-2">Fernanda Sabino</h3>
+                    <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi ipsam nostrum illo tempora esse quibusdam.</p>
+                    <p class="socials">
+                        <i class="bi bi-twitter mx-1"></i>
+                    <i class="bi bi-facebook mx-1"></i>
+                    <i class="bi bi-linkedin mx-1"></i>
+                    <i class="bi bi-instagram mx-1"></i>
+                    </p>
+                  </div>
+                </div>
+              </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 ms-4 col-lg-3 mt-5">
+              <div class="card text-center">
+                <div class="card-body text-light">
+                  <img src="img/team-4.jpg" alt="" class="img-fluid rounded-circle" style="width: 200px;">
+                  <h3 class="card-title py-3">Gustavo Almeida</h3>
+                  <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi ipsam nostrum illo tempora esse quibusdam.</p>
+                  <p class="socials">
+                    <i class="bi bi-twitter mx-1"></i>
+                    <i class="bi bi-facebook mx-1"></i>
+                    <i class="bi bi-linkedin mx-1"></i>
+                    <i class="bi bi-instagram mx-1"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 ms-5 col-lg-3 mt-5">
+              <div class="card text-center">
+                <div class="card-body text-light">
+                  <img src="img/team-5.jpg" alt="" class="img-fluid rounded-circle" style="width: 200px;">
+                  <h3 class="card-title">Jonathan Guimarães</h3>
+                  <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi ipsam nostrum illo tempora esse quibusdam.</p>
+                  <p class="socials">
+                    <i class="bi bi-twitter mx-1"></i>
+                    <i class="bi bi-facebook mx-1"></i>
+                    <i class="bi bi-linkedin mx-1"></i>
+                    <i class="bi bi-instagram mx-1"></i>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </section>
+      
+      
+      <footer class="bg-dark p-2 text-center">
+          <div class="container">
+              <p class="text-white">Todos os direitos reservados á @courtfinder</p>
+          </div>
+      </footer>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
+
+
+
