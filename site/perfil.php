@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($conexao->query($sql) === TRUE) {
         echo "SUCESSO ";
-        header("Location:../loginCadastro.html");
+        header("Location:../login.php");
         exit;
     } else {
         echo "Erro ao atualizar as informações do usuário: " . $conexao->error;
