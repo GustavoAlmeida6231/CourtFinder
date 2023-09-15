@@ -51,14 +51,14 @@
 
   .card {
     background-color: rgb(2, 110, 2);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     transition: all 0.2s ease-in-out;
   }
 
   .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px 0 rgba(138, 43, 226, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px 0 rgba(138, 43, 226, 0.3);
   }
 
   .img-fluid {
@@ -146,7 +146,7 @@
             <a class="nav-link active text-light" aria-current="page" href="./cadastrarQuadra.php">CADASTRE SUA QUADRA</a>
           </li>
           <li class="nav-item me-3 p-2">
-          <a class="nav-link active text-light" aria-current="page" href="../suaquadra.php">TENHA SUA QUADRA</a>
+            <a class="nav-link active text-light" aria-current="page" href="../suaquadra.php">TENHA SUA QUADRA</a>
           </li>
           <div class="dropdown p-2" data-bs-theme="success">
             <button class="btn dropdown-toggle text-light form-control border-success" type="button" id="dropdownMenuButtonSuccess" data-bs-toggle="dropdown">
@@ -165,9 +165,10 @@
           </div>
         </ul>
         <form class="d-flex p-1" role="search">
-          <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
+          <input class="form-control me-2" type="search" name="q" placeholder="Pesquisar" aria-label="Search">
           <button class="btn form-control border-success text-light me-5" type="submit">Pesquisar</button>
         </form>
+
       </div>
     </div>
   </nav>
@@ -176,35 +177,58 @@
   <div class="container">
     <br>
     <div class="form-container col-md-12">
-      <form>
+      <form action="" method="GET">
         <div class="d-flex col-10 mb-3">
           <strong>
             <p class="top-form mt-1 ms-5 m-0">ENCONTRE QUADRAS ESPORTIVAS <br> PERTO DE VOCÊ!</p>
           </strong>
           <div class="row justify-content-end">
             <div class="col-md-6">
-              <select class="form-select mt-3 " aria-label="Estado">
-                <option selected>Selecione o Estado</option>
-                <!-- Adicione aqui as opções de estado -->
-              </select>
+            <select class="form-select mt-3" aria-label="Estado" name="estado">
+              <option selected>Selecione o Estado</option>
+              <option value="SP">São Paulo</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="MG">Minas Gerais</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <select class="form-select mt-3" aria-label="Cidade" name="cidade">
+              <option selected>Selecione a Cidade</option>
+              <option value="SaoPaulo">São Paulo</option>
+              <option value="RioDeJaneiro">Rio de Janeiro</option>
+              <option value="BeloHorizonte">Belo Horizonte</option>
+            </select>
             </div>
             <div class="col-md-3">
-              <select class="form-select mt-3 " aria-label="Cidade">
-                <option selected>Selecione a Cidade</option>
-                <!-- Adicione aqui as opções de cidade -->
-              </select>
+              <button type="submit" class="btn form-control border-success text-light mt-3">Filtrar</button>
             </div>
           </div>
         </div>
       </form>
     </div>
     <div class="row">
-    <?php
+      <?php
       include_once('../configuracoes/config.php');
 
       // Consulta para obter os dados
       $sql = "SELECT * FROM courtfinder.quadra";
       $result = $conexao->query($sql);
+
+
+
+      if (isset($_GET['estado'])) {
+        $estado = $_GET['estado'];
+        $cidade = $_GET['cidade'];
+
+        $sql = "SELECT * FROM courtfinder.quadra WHERE estado = '$estado' AND cidade = '$cidade'";
+        
+        $result = $conexao->query($sql);
+        
+      } else {
+        // Se o formulário não foi enviado, exibir todas as quadradas
+        $sql = "SELECT * FROM courtfinder.quadra";
+        $result = $conexao->query($sql);
+      }
 
       // Verifica se há resultados
       if ($result->num_rows > 0) {
@@ -221,7 +245,9 @@
           // Criação do card HTML
           echo '<div class="col-md-4 mt-5">';
           echo '<div class="card rounded">';
+          echo '<a href="descricao.php?id=' . $id_espaco . '">';
           echo '<img src="data:image/jpeg;base64,' . $imagemData . '" alt="' . $nome . '" class="img-fluid" alt="Product Image">';
+          echo '</a>';
           echo '<div class="card-body text-light">';
           echo '<h5 class="card-title">' . $nome_espaco . '</h5>';
           echo '<p class="card-text">' . $descricao_espaco . '</p>';
@@ -238,7 +264,7 @@
           echo '</p>';
           echo '<form method="post" >';
           echo '<input type="hidden" name="espaco_id" value="' . $id_espaco . '">';
-          echo '<button type="submit" class="btn btn-green">Reservar Espaço</button>';
+          echo '<button type="submit" class="btn btn-green"><a href="descricao.php?id=' . $id_espaco . '">Reservar Espaço</a></button>';
           echo '<input type="hidden" name="espaco_id" value="' . $id_espaco . '">';
           echo '<button type="submit" class="btn ms-4 btn-green">Avaliar Espaço</button>';
           echo '</form>';
@@ -252,7 +278,7 @@
       // Fecha a conexão com o banco de dados
       $conexao->close();
       ?>
-    </div> 
+    </div>
   </div>
   </div>
   <br>

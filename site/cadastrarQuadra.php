@@ -2,36 +2,42 @@
 // Configurações do banco de dados
 include_once('../configuracoes/config.php');
 
-// Verifica se o formulário foi enviado
+$maxFileSize = 1024 * 1024;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $nome_espaco = $_POST["nome_espaco"];
   $descricao_espaco = $_POST["descricao_espaco"];
   $valor_espaco = $_POST["valor_espaco"];
   $avaliacao_espaco = $_POST["avaliacao_espaco"];
+  $estado = $_POST["estado"]; // Adicione a variável para o estado
 
   if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
     // Lê o conteúdo do arquivo
     $imagem = file_get_contents($_FILES['imagem']['tmp_name']);
 
     // Prepara a instrução SQL para inserir a imagem no banco de dados
-    $stmt = $conexao->prepare("INSERT INTO courtfinder.quadra (nome_espaco, descricao_espaco, valor_espaco, avaliacao_espaco, img_nome, img_conteudo) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssss", $nome_espaco, $descricao_espaco, $valor_espaco, $avaliacao_espaco, $_FILES['imagem']['name'], $imagem);
+    $stmt = $conexao->prepare("INSERT INTO courtfinder.quadra (nome_espaco, descricao_espaco, valor_espaco, avaliacao_espaco, estado, img_nome, img_conteudo) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssss", $nome_espaco, $descricao_espaco, $valor_espaco, $avaliacao_espaco, $estado, $_FILES['imagem']['name'], $imagem);
 
     // Executa a instrução SQL
     if ($stmt->execute()) {
+      // Upload bem-sucedido
     } else {
+      // Falha no upload
     }
 
     // Fecha a declaração preparada
     $stmt->close();
   } else {
+    // Erro de upload de imagem
   }
 }
-
 
 // Fecha a conexão com o banco de dados
 $conexao->close();
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -159,13 +165,25 @@ $conexao->close();
 
           <div class="form-group">
             <label for="avaliacao_espaco">Avaliação do Espaço:</label>
-            <input type="number" class="form-control" id="avaliacao_espaco" name="avaliacao_espaco" min="1" max="5" required >
+            <input type="number" class="form-control" id="avaliacao_espaco" name="avaliacao_espaco" min="1" max="5" required>
           </div>
 
           <div class="form-group">
             <label for="img_conteudo">Imagem do Espaço:</label>
             <input type="file" class="form-control-file" id="img_conteudo" name="imagem" required>
           </div>
+
+          <div class="form-group">
+            <label for="estado">Estado:</label>
+            <select class="form-select" id="estado" name="estado">
+              <option selected>Selecione o Estado</option>
+              <option value="SP">São Paulo</option>
+              <option value="RJ">Rio de Janeiro</option>
+              <option value="MG">Minas Gerais</option>
+              <!-- Adicione mais estados aqui -->
+            </select>
+          </div>
+
 
           <div class="text-center">
             <button type="submit" class="btn btn-primary">Enviar</button>

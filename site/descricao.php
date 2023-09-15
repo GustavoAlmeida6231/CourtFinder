@@ -1,3 +1,28 @@
+<?php
+include_once('../configuracoes/config.php');
+if (isset($_GET['id'])) {
+  $espaco_id = $_GET['id'];
+  $sql_detalhes = "SELECT * FROM courtfinder.quadra WHERE id_espaco = $espaco_id";
+  $result_detalhes = $conexao->query($sql_detalhes);
+
+  if ($result_detalhes->num_rows > 0) {
+    $row_detalhes = $result_detalhes->fetch_assoc();
+    $nome_espaco_detalhes = $row_detalhes['nome_espaco'];
+    $descricao_espaco_detalhes = $row_detalhes['descricao_espaco'];
+    $valor_espaco_detalhes = $row_detalhes['valor_espaco'];
+    $avaliacao_espaco_detalhes = $row_detalhes['avaliacao_espaco'];
+    $nome = $row_detalhes['img_nome'];
+    $conteudo = $row_detalhes['img_conteudo'];
+    $imagemData = base64_encode($conteudo);
+  } else {
+    echo 'Espaço não encontrado.';
+  }
+} else {
+  echo 'ID do espaço não fornecido na URL.';
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,20 +78,20 @@
 
   .card {
     background-color: rgb(2, 110, 2);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     border-radius: 20px;
     transition: all 0.2s ease-in-out;
   }
 
   .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px 0 rgba(138, 43, 226, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px 0 rgba(138, 43, 226, 0.3);
   }
 
   .card-img {
-  width: 50%;
-  height: auto;
-}
+    width: 50%;
+    height: auto;
+  }
 
   .fa-star.checked {
     color: #201B2C;
@@ -105,18 +130,18 @@
   }
 
   .miniaturas {
-  display: flex;
-  list-style: none;
-  padding: 0;
+    display: flex;
+    list-style: none;
+    padding: 0;
   }
 
   .miniaturas li img {
-  max-width: 150px; 
-  height: auto;
+    max-width: 150px;
+    height: auto;
   }
 
   .miniaturas li {
-  margin-right: 10px;
+    margin-right: 10px;
   }
 
   h1 {
@@ -146,7 +171,7 @@
             <a class="nav-link active text-light" aria-current="page" href="./cadastrarQuadra.php">CADASTRE SUA QUADRA</a>
           </li>
           <li class="nav-item me-3 p-2">
-          <a class="nav-link active text-light" aria-current="page" href="../suaquadra.php">TENHA SUA QUADRA</a>
+            <a class="nav-link active text-light" aria-current="page" href="../suaquadra.php">TENHA SUA QUADRA</a>
           </li>
           <div class="dropdown p-2" data-bs-theme="success">
             <button class="btn dropdown-toggle text-light form-control border-success" type="button" id="dropdownMenuButtonSuccess" data-bs-toggle="dropdown">
@@ -199,41 +224,53 @@
       </form>
     </div>
 
-  <div class="container my-5 text-light">
+    <div class="container my-5 text-light">
+      <?php
+      if (isset($nome_espaco_detalhes)) {
+        echo '<h1>' . $nome_espaco_detalhes . '</h1>';
+        echo '<div class="row">';
+        echo '<div class="col-md-6">';
+        echo '<div class="container card">';
+        echo '<img src="data:image/jpeg;base64,' . $imagemData . '"  class="rounded">';
+        echo '</div>';
+        echo '</div>';
+        echo '<div class="col-md-6">';
+        echo '<h2 class="card-title">' . $nome_espaco_detalhes . '</h2>';
+        echo '<p class="card-text">' . $descricao_espaco_detalhes . '</p>';
+        echo '<h4>Horários Disponíveis:</h4>';
+        echo '<form action="reservar.php" method="POST">';
+        echo '<select name="horario" class="form-select">';
 
-    <h1>Detalhes da Quadra</h1>
+        for ($hora = 9; $hora < 18; $hora++) {
+          $horario_inicio = $hora;
+          $horario_fim = $hora + 1;
+          $horario_formatado = sprintf("De %dh às %dh", $horario_inicio, $horario_fim);
+          echo '<option value="' . $horario_formatado . '">' . $horario_formatado . '</option>';
+        }
 
-    <div class="row">
+        echo '</select>';
+        echo '<button type="submit" class="btn btn-green">Reservar</button>';
 
-    <div class="col-md-6">
-  <div class="container card">
-          <img src="img/project-1.jpg" style="width: 37rem; height: 40rem;" class="rounded">
-  </div>
-</div>
-      <div class="col-md-6">
-        <h2 class="card-title">Nome da Quadra</h2>
-        
-        <p class="card-text">
-          Descrição do produto...
-        </p>
+        echo '<div class="mt-3">';
+        echo '<img width="36" height="36" src="https://img.icons8.com/color/36/pix.png" alt="pix"/>';
+        echo '<img width="36" height="36" src="https://img.icons8.com/color/36/visa.png" alt="visa"/>';
+        echo '<img width="36" height="36" src="https://img.icons8.com/color/36/mastercard.png" alt="mastercard"/>';
+        echo '<img width="36" height="36" src="https://img.icons8.com/color/36/paypal.png" alt="paypal"/>';
+        echo '<img width="36" height="36" src="https://img.icons8.com/color/36/boleto-bankario.png" alt="boleto-bankario"/>';
+        echo '</div>';
 
-        <h4>Especificações:</h4>
-        <ul>
-          <li>Especificação 1</li>
-          <li>Especificação 2</li>
-          <li>Especificação 3</li>
-        </ul>
-
-        <h4>Informações adicionais:</h4>
-        <p>Mais informações...</p>
-        
-        <button class="btn btn-green" onclick="window.open('#','_blank');">Reservar</button>
-
-      </div>
-
+        echo '</form>';
+        echo '</div>';
+        echo '</div>';
+      } else {
+        echo '<p>Detalhes da quadra não encontrados.</p>';
+      }
+      ?>
     </div>
 
-  </div>
+
+
+
 
   </div>
   </div>
@@ -241,6 +278,7 @@
   <br>
   <br>
 </body>
+
 </html>
 
 <!--  -->
