@@ -200,29 +200,6 @@ if (isset($_GET['id'])) {
 
   <div class="container">
     <br>
-    <div class="form-container col-md-12">
-      <form>
-        <div class="d-flex col-10 mb-3">
-          <strong>
-            <p class="top-form mt-1 ms-5 m-0">ENCONTRE QUADRAS ESPORTIVAS <br> PERTO DE VOCÊ!</p>
-          </strong>
-          <div class="row justify-content-end">
-            <div class="col-md-6">
-              <select class="form-select mt-3 " aria-label="Estado">
-                <option selected>Selecione o Estado</option>
-                <!-- Adicione aqui as opções de estado -->
-              </select>
-            </div>
-            <div class="col-md-3">
-              <select class="form-select mt-3 " aria-label="Cidade">
-                <option selected>Selecione a Cidade</option>
-                <!-- Adicione aqui as opções de cidade -->
-              </select>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
 
     <div class="container my-5 text-light">
       <?php
@@ -265,6 +242,42 @@ if (isset($_GET['id'])) {
       } else {
         echo '<p>Detalhes da quadra não encontrados.</p>';
       }
+      echo '<br>';
+      ?>
+
+      <form method="POST" action="adicionar_comentario.php">
+        <input type="hidden" name="espaco_id" value="<?php echo $espaco_id; ?>">
+        <div class="form-group">
+          <label for="nome">Seu Nome:</label>
+          <input type="text" class="form-control" name="nome" required>
+        </div>
+        <div class="form-group">
+          <label for="comentario">Comentário:</label>
+          <textarea class="form-control" name="comentario" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar Comentário</button>
+      </form>
+      <?php
+
+      echo '<br>';
+      echo '<br>';
+      $sql_comentarios = "SELECT * FROM comentarios WHERE espaco_id = $espaco_id ORDER BY data_comentario DESC";
+      $result_comentarios = $conexao->query($sql_comentarios);
+
+      if ($result_comentarios->num_rows > 0) {
+        echo '<h3>Comentários:</h3>';
+        while ($row_comentario = $result_comentarios->fetch_assoc()) {
+          echo '<div class="card mb-3">';
+          echo '<div class="card-body">';
+          echo '<h5 class="card-title">' . $row_comentario['nome'] . '</h5>';
+          echo '<p class="card-text">' . $row_comentario['comentario'] . '</p>';
+          echo '<p class="card-text"><small class="text-muted">' . $row_comentario['data_comentario'] . '</small></p>';
+          echo '</div>';
+          echo '</div>';
+        }
+      } else {
+        echo '<p>Nenhum comentário encontrado.</p>';
+      }
       ?>
     </div>
 
@@ -277,6 +290,7 @@ if (isset($_GET['id'])) {
   <br>
   <br>
   <br>
+
 </body>
 
 </html>
