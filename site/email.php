@@ -4,12 +4,12 @@ session_start();
 
 $msg = "";
 
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 ini_set('default_charset', 'utf-8');
 
 use PHPMailer\PHPMailer\PHPMailer;
 
-include_once('./configuracoes/config.php');
+include_once('../configuracoes/config.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $emailToCheck = $_POST['email'];
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
             $mail->Username   = 'CourtFinder66';
-            $mail->Password   = 'weyxupkyecnpzaky';
+            $mail->Password   = 'kgkmilnunfaofqsw';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port       = 465;
 
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <body>
                     <h1>Redefinicao de Senha</h1>
                     <p>Clique no link abaixo para Redefinir a Senha:</p>
-                    <a href="http://localhost/OFICIAL/redefinir.php">Redefinir Senha</a>
+                    <a href="http://localhost/CourtFinder/site/redefinir.php">Redefinir Senha</a>
                 </body>
                 </html>
             ';
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Forgot Password</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/styleforgetpass.css">
+    <link rel="stylesheet" href="../css/styleforgetpass.css">
 </head>
 
 <body>
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </a>
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="col-md-6 form-container">
-            <img src="./img/logo.png" class="logo" alt="Logo">
+            <img src="../img/logo.png" class="logo" alt="Logo">
             <form action="" method="POST" autocomplete="">
                 <h2 class="text-center">Esqueceu a Senha?</h2>
                 <p class="text-center">Escreva seu email abaixo!</p>

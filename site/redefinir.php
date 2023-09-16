@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once('./configuracoes/config.php');
+include_once('../configuracoes/config.php');
 
 $email = $_SESSION['usuario_email'];
 $sql = "SELECT * FROM cadastro_usuario WHERE email = '$email'";
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Forgot Password</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/stylenewpass.css">
+    <link rel="stylesheet" href="../css/stylenewpass.css">
 </head>
 <body>
     <a href="outra-pagina.html" class="logo-link">
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </a>
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
         <div class="col-md-6 form-container">
-            <img src="./img/logo.png" class="logo" alt="Logo">
+            <img src="../img/logo.png" class="logo" alt="Logo">
             <form action="" method="POST" autocomplete="" onsubmit="">
                 <h2 class="text-center">Crie uma senha nova.</h2>
                 <p class="text-center">Sua senha deve conter:<br>- A senha deve ter pelo menos 8 caracteres<br>- Pelo menos uma letra de A-Z<br>- Pelo menos um número de 1-9

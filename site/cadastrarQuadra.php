@@ -12,28 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $estado = $_POST["estado"]; // Adicione a variável para o estado
 
   if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
-    // Lê o conteúdo do arquivo
     $imagem = file_get_contents($_FILES['imagem']['tmp_name']);
-
-    // Prepara a instrução SQL para inserir a imagem no banco de dados
     $stmt = $conexao->prepare("INSERT INTO courtfinder.quadra (nome_espaco, descricao_espaco, valor_espaco, avaliacao_espaco, estado, img_nome, img_conteudo) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssss", $nome_espaco, $descricao_espaco, $valor_espaco, $avaliacao_espaco, $estado, $_FILES['imagem']['name'], $imagem);
 
-    // Executa a instrução SQL
     if ($stmt->execute()) {
-      // Upload bem-sucedido
     } else {
-      // Falha no upload
     }
-
-    // Fecha a declaração preparada
     $stmt->close();
   } else {
-    // Erro de upload de imagem
   }
 }
 
-// Fecha a conexão com o banco de dados
 $conexao->close();
 ?>
 
@@ -180,7 +170,6 @@ $conexao->close();
               <option value="SP">São Paulo</option>
               <option value="RJ">Rio de Janeiro</option>
               <option value="MG">Minas Gerais</option>
-              <!-- Adicione mais estados aqui -->
             </select>
           </div>
 
