@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once('../configuracoes/config.php');
 if (isset($_GET['id'])) {
   $espaco_id = $_GET['id'];
@@ -27,6 +28,12 @@ if (isset($_GET['id'])) {
 <html lang="en">
 
 <head>
+  <?php
+  if (!isset($_SESSION['usuario_id'])) {
+    echo '<p>Usuario não logado, realizar <a href="../loginCadastro.html">Login</a></p>';
+    exit();
+  }
+  ?>
   <title>Shop Court</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -248,8 +255,7 @@ if (isset($_GET['id'])) {
       <form method="POST" action="adicionar_comentario.php">
         <input type="hidden" name="espaco_id" value="<?php echo $espaco_id; ?>">
         <div class="form-group">
-          <label for="nome">Seu Nome:</label>
-          <input type="text" class="form-control" name="nome" required>
+          <input type="hidden" class="form-control" name="nome" value="<?php echo isset($_SESSION['usuario_id']) ? $_SESSION['usuario_nome'] : ''; ?>" required>
         </div>
         <div class="form-group">
           <label for="comentario">Comentário:</label>
@@ -257,28 +263,38 @@ if (isset($_GET['id'])) {
         </div>
         <button type="submit" class="btn btn-primary">Enviar Comentário</button>
       </form>
+
       <?php
-
       echo '<br>';
       echo '<br>';
-      $sql_comentarios = "SELECT * FROM comentarios WHERE espaco_id = $espaco_id ORDER BY data_comentario DESC";
-      $result_comentarios = $conexao->query($sql_comentarios);
 
-      if ($result_comentarios->num_rows > 0) {
-        echo '<h3>Comentários:</h3>';
-        while ($row_comentario = $result_comentarios->fetch_assoc()) {
-          echo '<div class="card mb-3">';
-          echo '<div class="card-body">';
-          echo '<h5 class="card-title">' . $row_comentario['nome'] . '</h5>';
-          echo '<p class="card-text">' . $row_comentario['comentario'] . '</p>';
-          echo '<p class="card-text"><small class="text-muted">' . $row_comentario['data_comentario'] . '</small></p>';
-          echo '</div>';
-          echo '</div>';
+      try {
+        $sql_comentarios = "SELECT * FROM comentarios WHERE espaco_id = $espaco_id ORDER BY data_comentario DESC";
+        $result_comentarios = $conexao->query($sql_comentarios);
+
+        if ($result_comentarios === false) {
+          throw new Exception("Erro na consulta ao banco de dados: " . $conexao->error);
         }
-      } else {
-        echo '<p>Nenhum comentário encontrado.</p>';
+
+        if ($result_comentarios->num_rows > 0) {
+          echo '<h3>Comentários:</h3>';
+          while ($row_comentario = $result_comentarios->fetch_assoc()) {
+            echo '<div class="card mb-3">';
+            echo '<div class="card-body">';
+            echo '<h5 class="card-title">' . $row_comentario['nome'] . '</h5>';
+            echo '<p class="card-text">' . $row_comentario['comentario'] . '</p>';
+            echo '<p class="card-text "><small class="text-dark">' . date('d/m/Y H:i:s', strtotime($row_comentario['data_comentario'] . ' -3 hours')) . '</small></p>';
+            echo '</div>';
+            echo '</div>';
+          }
+        } else {
+          echo '<p>Nenhum comentário encontrado.</p>';
+        }
+      } catch (Exception $e) {
+        echo '<p>Ocorreu um erro: ' . $e->getMessage() . '</p>';
       }
       ?>
+
     </div>
 
 

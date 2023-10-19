@@ -2,6 +2,14 @@
 <html lang="en">
 
 <head>
+  <?php
+  session_start();
+  if (!isset($_SESSION['usuario_id'])) {
+    echo '<p>Usuario não logado, realizar <a href="../loginCadastro.html">Login</a></p>';
+    exit();
+  }
+  ?>
+
   <title>Shop Court</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -184,20 +192,20 @@
           </strong>
           <div class="row justify-content-end">
             <div class="col-md-6">
-            <select class="form-select mt-3" aria-label="Estado" name="estado">
-              <option selected>Selecione o Estado</option>
-              <option value="SP">São Paulo</option>
-              <option value="RJ">Rio de Janeiro</option>
-              <option value="MG">Minas Gerais</option>
-            </select>
-          </div>
-          <div class="col-md-3">
-            <select class="form-select mt-3" aria-label="Cidade" name="cidade">
-              <option selected>Selecione a Cidade</option>
-              <option value="SaoPaulo">São Paulo</option>
-              <option value="RioDeJaneiro">Rio de Janeiro</option>
-              <option value="BeloHorizonte">Belo Horizonte</option>
-            </select>
+              <select class="form-select mt-3" aria-label="Estado" name="estado">
+                <option selected>Selecione o Estado</option>
+                <option value="SP">São Paulo</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="MG">Minas Gerais</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select mt-3" aria-label="Cidade" name="cidade">
+                <option selected>Selecione a Cidade</option>
+                <option value="SaoPaulo">São Paulo</option>
+                <option value="RioDeJaneiro">Rio de Janeiro</option>
+                <option value="BeloHorizonte">Belo Horizonte</option>
+              </select>
             </div>
             <div class="col-md-3">
               <button type="submit" class="btn form-control border-success text-light mt-3">Filtrar</button>
@@ -221,9 +229,8 @@
         $cidade = $_GET['cidade'];
 
         $sql = "SELECT * FROM courtfinder.quadra WHERE estado = '$estado' AND cidade = '$cidade'";
-        
+
         $result = $conexao->query($sql);
-        
       } else {
         // Se o formulário não foi enviado, exibir todas as quadradas
         $sql = "SELECT * FROM courtfinder.quadra";
