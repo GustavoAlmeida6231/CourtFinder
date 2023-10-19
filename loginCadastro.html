@@ -7,23 +7,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Usuário</title>
     <link rel='stylesheet' type='text/css' media='screen' href='./css/index.css'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+<style>
+    body {
+        background-color: #201B2C;
+    }
 
+    @keyframes slideDown {
+        from {
+            transform: translateY(900px);
+        }
+        to {
+            transform: translateY(-20px);
+        }
+    }
+
+    #container {
+        animation: slideDown 0.8s ease-in-out forwards;
+    }
+
+    .row {
+        margin-top: 15px;
+    }
+
+    .labelregiao {
+        font-size: 1rem;
+        color: #ffffff;
+    }
+
+    @media (max-width: 767px) {
+        #jack {
+            width: 350px;
+            margin-top: 20px;
+        }
+    }
+</style>
 <body>
 
-    <nav>
-        <a class="logo" href="./index.html">CourtFinder</a>
-        <div class="mobile-menu">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
+    <nav class="navbar navbar-expand-lg shadow bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand ms-5 text-light" href="./">COURTFINDER</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1024px-Hamburger_icon.svg.png);"></span>
+          </button>
+          <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto mb-lg-2 mt-2 p-2">
+                <li class="nav-item me-3 p-2">
+                    <a class="nav-link active text-light" aria-current="page" href="./">HOME</a>
+                  </li>
+              <li class="nav-item me-3 p-2">
+                <a class="nav-link active text-light" href="./site/index.php">MODALIDADES</a>
+              </li>
+              <li class="nav-item me-3 p-2">
+                <a class="nav-link active text-light" aria-current="page" href="./suaquadra.php">TENHA SUA QUADRA</a>
+              </li>
+              <li class="nav-item me-3 p-2">
+                <a class="nav-link active text-light" aria-current="page" href="./loginCadastro.html">LOGIN</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <ul class="nav-list">
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./index.html#about">Quem somos</a></li>
-        </ul>
-    </nav>
+      </nav>
 
     <div id="mainlog">
 
@@ -52,77 +98,78 @@
                     </div>
                     <button class="btn btn-default" id="entrar" type="submit">Entrar</button>
                 </form>
-
-                <form method="POST" action="./configuracoes/configRegistro.php" class="row cadastro_valid" id="signup"
-                    onsubmit="
-                    try{
-                        const valorlogin = this.login.value;
-                        const valoremail = this.email.value;
-                        const valorestado = this.regiao.value;
-                        const valorcelular = this.celular.value;
-                        const valordatanascimento = this.dtnasc.value;
-                        const valorSenha = this.senha.value;
-                        const valorSenhaConfirmada = this.confirmarSenha.value;
-                if(valorlogin == ''){
-                    alerta('warning', 'Oops...',
-                    'O login não pode estar vazio');
-                  return false;
-                }else if(valoremail == ''){
-                    alerta('warning', 'Oops...',
-                    'O email não pode estar vazio!');
-                  return false;
-                }else if(valorestado == ''){
-                    alerta('warning', 'Oops...',
-                    'Selecione um estado!');
-                  return false;
-                }else if(!validacelular(this.celular.value)){
-                    alerta('warning', 'Oops...',
-                    'Preencha corretamente o celular!');
-                  return false;
-                }else if(valordatanascimento == ''){
-                    alerta('warning', 'Oops...',
-                    'A data de nascimento nao pode estar vazio!');
-                  return false;
-                }else if(!validaSenha(this.senha.value)){
-                    alerta('warning', 'Oops...',
-                    'Preencha corretamente a senha!')
-                  return false;
-                }else if(!validaSenhaConfirmada(valorSenhaConfirmada, valorSenha)){
-                    alerta('warning', 'Oops...',
-                    'As senhas não são as mesmas!')
-                  return false; 
-                }
-                    }catch(e){
-                    alert('Erro: '+e.message);
+                <div class="row">
+                    <form method="POST" action="./configuracoes/configRegistro.php" class="row cadastro_valid" id="signup"
+                        onsubmit="
+                        try{
+                            const valorlogin = this.login.value;
+                            const valoremail = this.email.value;
+                            const valorestado = this.regiao.value;
+                            const valorcelular = this.celular.value;
+                            const valordatanascimento = this.dtnasc.value;
+                            const valorSenha = this.senha.value;
+                            const valorSenhaConfirmada = this.confirmarSenha.value;
+                    if(valorlogin == ''){
+                        alerta('warning', 'Oops...',
+                        'O login não pode estar vazio');
+                    return false;
+                    }else if(valoremail == ''){
+                        alerta('warning', 'Oops...',
+                        'O email não pode estar vazio!');
+                    return false;
+                    }else if(valorestado == ''){
+                        alerta('warning', 'Oops...',
+                        'Selecione um estado!');
+                    return false;
+                    }else if(!validacelular(this.celular.value)){
+                        alerta('warning', 'Oops...',
+                        'Preencha corretamente o celular!');
+                    return false;
+                    }else if(valordatanascimento == ''){
+                        alerta('warning', 'Oops...',
+                        'A data de nascimento nao pode estar vazio!');
+                    return false;
+                    }else if(!validaSenha(this.senha.value)){
+                        alerta('warning', 'Oops...',
+                        'Preencha corretamente a senha!')
+                    return false;
+                    }else if(!validaSenhaConfirmada(valorSenhaConfirmada, valorSenha)){
+                        alerta('warning', 'Oops...',
+                        'As senhas não são as mesmas!')
+                    return false; 
                     }
-                    ">
-                    <input type="hidden" name="cadastrado" value="cadastrar-usuario">
-                    <label for="login" class="labelregistro">Login</label>
-                    <input type="text" id="login" name="login" placeholder="Login" />
-                    <label for="email" class="labelregistro">E-mail</label>
-                    <input type="text" id="email" name="email" placeholder="Email" />
-                    <label for="dtnasc" class="labelregistro">Data de nascimento</label>
-                    <input type="text" data-js="data" id="dtnasc" name="dtnasc" placeholder="dd/mm/aaaa" maxlength="10"
-                        class="form-control">
-                    <label for="senha" class="labelregistro">Senha</label>
-                    <input type="password" id="senha" name="password" placeholder="Senha" />
-                    <label for="confirmarsenha" class="labelregistro">Confirmar senha</label>
-                    <input type="password" id="confirmarSenha" placeholder="Confirmar senha" />
-                    <p id="lembrete">Sua senha deve conter:<br>- Pelo menos uma letra de A-Z<br>- Pelo menos um numero
-                        de 1-9</p>
-                    <label for="celular" class="labelregistro">Número de telefone</label>
-                    <input type="text" id="celular" data-js="celular" name="celular" maxlength="15"
-                        placeholder="(99) 99999-9999" />
-                    <label for="regiao" class="labelregistro">Região</label>
-                    <select class="campos" id="regiao" name="regiaoGeral" class="form-control" placeholder="Estado">
-                        <option value=""></option>
-                        <option value="MG">Minas Gerais</option>
-                        <option value="SP">São Paulo</option>
-                    </select>
-                    <div class="divCheck">
-                    </div>
-                    <button id="botaocada" class="btn btn-default" type="submit">Cadastrar</button>
-                </form>
+                        }catch(e){
+                        alert('Erro: '+e.message);
+                        }
+                        ">
+                        <input type="hidden" name="cadastrado" value="cadastrar-usuario">
+                        <label for="login" class="labelregistro">Login</label>
+                        <input type="text" id="login" name="login" placeholder="Login" />
+                        <label for="email" class="labelregistro">E-mail</label>
+                        <input type="text" id="email" name="email" placeholder="Email" />
+                        <label for="dtnasc" class="labelregistro">Data de nascimento</label>
+                        <input type="text" data-js="data" id="dtnasc" name="dtnasc" placeholder="dd/mm/aaaa" maxlength="10"
+                            class="form-control">
+                        <label for="senha" class="labelregistro">Senha</label>
+                        <input type="password" id="senha" name="password" placeholder="Senha" />
+                        <label for="confirmarsenha" class="labelregistro">Confirmar senha</label>
+                        <input type="password" id="confirmarSenha" placeholder="Confirmar senha" />
+                        <p id="lembrete">Sua senha deve conter:<br>- Pelo menos uma letra de A-Z<br>- Pelo menos um numero
+                            de 1-9</p>
+                        </br>
+                        <label for="celular" class="labelregistro">Número de telefone</label>
+                        <input type="text" id="celular" data-js="celular" name="celular" maxlength="15" placeholder="(99) 99999-9999" />
+                        <label for="regiao" class="labelregiao mt-2 ms-2">Região</label>
+                        <select class="campos" id="regiao" name="regiaoGeral" class="form-control" placeholder="Estado">
+                            <option value=""></option>
+                            <option value="MG">Minas Gerais</option>
+                            <option value="SP">São Paulo</option>
+                        </select>
+                        <div class="divCheck">
+                        </div>
+                        <button id="botaocada" class="btn btn-default" type="submit">Cadastrar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -281,7 +328,7 @@
     </script>
 
 
-    <script src="./js/mobile-navbar.js"></script>
+    <script src="./js/loginCadastro.js"></script>
 
 </body>
 

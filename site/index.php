@@ -3,11 +3,8 @@
 
 <head>
   <?php
+  ini_set('default_charset', 'utf-8');
   session_start();
-  if (!isset($_SESSION['usuario_id'])) {
-    echo '<p>Usuario não logado, realizar <a href="../loginCadastro.html">Login</a></p>';
-    exit();
-  }
   ?>
 
   <title>Shop Court</title>
@@ -108,7 +105,7 @@
   }
 
   .top-form {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 
   @media (max-width: 767px) {
@@ -129,26 +126,28 @@
       width: 95% !important;
       height: 95% !important;
     }
+
+    .btn {
+    margin-left: 55px !important;
+    margin-top: 20px !important;
+  }
+   .dropdown-toggle {
+     margin-left: 0% !important;
+   }
   }
 </style>
 
 <body style="background-color: #201b2c; height: 100vh; width: 100vw">
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand ms-5" href="#">COURTFINDER</a>
+      <a class="navbar-brand ms-5" href="../">COURTFINDER</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto mb-lg-2 mt-2 p-2">
           <li class="nav-item me-3 p-2">
-            <a class="nav-link active text-light" aria-current="page" href="../index.html">HOME</a>
-          </li>
-          <li class="nav-item me-3 p-2">
-            <a class="nav-link active text-light" href="./index.php">QUADRAS</a>
-          </li>
-          <li class="nav-item me-3 p-2">
-            <a class="nav-link active text-light" aria-current="page" href="#">QUEM SOMOS</a>
+            <a class="nav-link active text-light" aria-current="page" href="../">HOME</a>
           </li>
           <li class="nav-item me-3 p-2">
             <a class="nav-link active text-light" aria-current="page" href="./cadastrarQuadra.php">CADASTRE SUA QUADRA</a>
@@ -188,7 +187,7 @@
       <form action="" method="GET">
         <div class="d-flex col-10 mb-3">
           <strong>
-            <p class="top-form mt-1 ms-5 m-0">ENCONTRE QUADRAS ESPORTIVAS <br> PERTO DE VOCÊ!</p>
+            <p class="top-form mt-1 ms-5 mt-2 m-0">ENCONTRE QUADRAS ESPORTIVAS PERTO DE VOCÊ!</p>
           </strong>
           <div class="row justify-content-end">
             <div class="col-md-6">
@@ -208,7 +207,7 @@
               </select>
             </div>
             <div class="col-md-3">
-              <button type="submit" class="btn form-control border-success text-light mt-3">Filtrar</button>
+              <button type="submit" class="btn form-control border-success text-light mt-3" style="margin-left: 100px">Filtrar</button>
             </div>
           </div>
         </div>

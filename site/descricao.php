@@ -29,6 +29,7 @@ if (isset($_GET['id'])) {
 
 <head>
   <?php
+  ini_set('default_charset', 'utf-8');
   if (!isset($_SESSION['usuario_id'])) {
     echo '<p>Usuario não logado, realizar <a href="../loginCadastro.html">Login</a></p>';
     exit();
@@ -283,7 +284,7 @@ if (isset($_GET['id'])) {
             echo '<div class="card-body">';
             echo '<h5 class="card-title">' . $row_comentario['nome'] . '</h5>';
             echo '<p class="card-text">' . $row_comentario['comentario'] . '</p>';
-            echo '<p class="card-text "><small class="text-dark">' . date('d/m/Y H:i:s', strtotime($row_comentario['data_comentario'] . ' -3 hours')) . '</small></p>';
+            echo '<p class="card-text "><small class="text-dark">' . date('d/m/Y H:i:s', strtotime($row_comentario['data_comentario'])) . '</small></p>';
             echo '</div>';
             echo '</div>';
           }

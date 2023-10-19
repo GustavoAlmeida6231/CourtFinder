@@ -1,15 +1,10 @@
 <?php
+ini_set('default_charset', 'utf-8');
 session_start();
-
-// Conexão com o banco de dados
 include_once('../configuracoes/config.php');
-
-// Verifica se o usuário está logado
 if (!isset($_SESSION['usuario_id'])) {
     exit;
 }
-
-// Consulta os dados do usuário
 $sql = "SELECT login, email, regiao, celular, dataNascimento, password , nivel FROM cadastro_usuario WHERE id = {$_SESSION['usuario_id']}";
 $resultado = $conexao->query($sql);
 

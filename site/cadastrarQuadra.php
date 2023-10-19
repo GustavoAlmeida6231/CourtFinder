@@ -96,10 +96,10 @@ $conexao->close();
       <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto mb-lg-2 mt-2 p-2">
           <li class="nav-item me-3 p-2">
-            <a class="nav-link active text-light" aria-current="page" href="./index.php">HOME</a>
+            <a class="nav-link active text-light" aria-current="page" href="../">HOME</a>
           </li>
           <li class="nav-item me-3 p-2">
-            <a class="nav-link active text-light" href="#">MODALIDADES</a>
+            <a class="nav-link active text-light" href="./index.php">MODALIDADES</a>
           </li>
           <li class="nav-item me-3 p-2">
             <a class="nav-link active text-light" aria-current="page" href="#">QUEM SOMOS</a>
