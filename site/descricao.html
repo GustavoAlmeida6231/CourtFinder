@@ -20,7 +20,7 @@ if (isset($_GET['id'])) {
 } else {
   echo 'ID do espaço não fornecido na URL.';
 }
-?>
+?> 
 
 
 <!DOCTYPE html>
@@ -150,61 +150,84 @@ if (isset($_GET['id'])) {
 </style>
 
 <body style="background-color: #201b2c; height: 100vh; width: 100vw">
-<nav class="navbar navbar-expand-lg shadow bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand ms-5 text-light" href="index.html">COURTFINDER</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1024px-Hamburger_icon.svg.png);"></span>
-          </button>
-          <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto mb-lg-2 mt-2 p-2">
-              <li class="nav-item me-3 p-2">
-                <a class="nav-link active text-light" aria-current="page" href="./index.html">HOME</a>
-              </li>
-              <li class="nav-item me-3 p-2">
-                <a class="nav-link active text-light" href="./index.php">MODALIDADES</a>
-              </li>
-              <li class="nav-item me-3 p-2">
-                <a class="nav-link active text-light" aria-current="page" href="#">QUEM SOMOS</a>
-              </li>
-              <li class="nav-item me-3 p-2">
-                <a class="nav-link active text-light" aria-current="page" href="./suaquadra.php">TENHA SUA QUADRA</a>
-              </li>
-              <li class="nav-item me-3 p-2">
-                <a class="nav-link active text-light" aria-current="page" href="./loginCadastro.html">LOGIN</a>
-              </li>
-              <div class="dropdown p-2" data-bs-theme="success">
-                  <button class="btn dropdown-toggle text-light form-control border-success" type="button" id="dropdownMenuButtonSuccess" data-bs-toggle="dropdown">
-                    Mais Opções!
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSuccess">
-                    <li><a class="dropdown-item text-light" href="#">Perfil</a></li>
-                    <li><a class="dropdown-item text-light" href="#">Configurações de Conta</a></li>
-                    <li><a class="dropdown-item text-light" href="#">Recentes</a></li>
-                    <li><a class="dropdown-item text-light" href="#">Cadastrar-se</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-light" href="#">Ajuda</a></li>
-                  </ul>
-                </div>
-            </ul>
-            <form class="d-flex p-1" role="search">
-              <input class="form-control me-2" list="datalistOptions" type="search" placeholder="Pesquisar" aria-label="Search">
-              <datalist id="datalistOptions">
-                <option value="Ajuda">
-                <option value="Sobre Nós">
-                <option value="Quadras">
-                <option value="Futebol">
-                <option value="Basquete">
-              </datalist>
-              <button class="btn form-control border-success text-light me-5" type="submit">Pesquisar</button>
-            </form>
-          </div>
-        </div>
-      </nav>
+  <nav class="navbar navbar-expand-lg shadow bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand ms-5 text-light" href="index.html">COURTFINDER</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1024px-Hamburger_icon.svg.png);"></span>
+      </button>
+      <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto mb-lg-2 mt-2 p-2">
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" aria-current="page" href="./index.html">HOME</a>
+          </li>
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" href="./index.php">MODALIDADES</a>
+          </li>
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" aria-current="page" href="#">QUEM SOMOS</a>
+          </li>
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" aria-current="page" href="./suaquadra.php">TENHA SUA QUADRA</a>
+          </li>
+          <li class="nav-item me-3 p-2">
+            <a class="nav-link active text-light" aria-current="page" href="./loginCadastro.html">LOGIN</a>
+          </li>
+          <div class="dropdown p-2" data-bs-theme="success">
+              <button class="btn dropdown-toggle text-light form-control border-success" type="button" id="dropdownMenuButtonSuccess" data-bs-toggle="dropdown">
+                Mais Opções!
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSuccess">
+                <li><a class="dropdown-item text-light" href="#">Perfil</a></li>
+                <li><a class="dropdown-item text-light" href="#">Configurações de Conta</a></li>
+                <li><a class="dropdown-item text-light" href="#">Recentes</a></li>
+                <li><a class="dropdown-item text-light" href="#">Cadastrar-se</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-light" href="#">Ajuda</a></li>
+              </ul>
+            </div>
+        </ul>
+        <form class="d-flex p-1" role="search">
+          <input class="form-control me-2" list="datalistOptions" type="search" placeholder="Pesquisar" aria-label="Search">
+          <datalist id="datalistOptions">
+            <option value="Ajuda">
+            <option value="Sobre Nós">
+            <option value="Quadras">
+            <option value="Futebol">
+            <option value="Basquete">
+          </datalist>
+          <button class="btn form-control border-success text-light me-5" type="submit">Pesquisar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
 
 
   <div class="container">
     <br>
+    <div class="form-container col-md-12">
+      <form>
+        <div class="d-flex col-10 mb-3">
+          <strong>
+            <p class="top-form mt-1 ms-5 m-0">ENCONTRE QUADRAS ESPORTIVAS <br> PERTO DE VOCÊ!</p>
+          </strong>
+          <div class="row justify-content-end">
+            <div class="col-md-6">
+              <select class="form-select mt-3 " aria-label="Estado">
+                <option selected>Selecione o Estado</option>
+                <!-- Adicione aqui as opções de estado -->
+              </select>
+            </div>
+            <div class="col-md-3">
+              <select class="form-select mt-3 " aria-label="Cidade">
+                <option selected>Selecione a Cidade</option>
+                <!-- Adicione aqui as opções de cidade -->
+              </select>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
 
     <div class="container my-5 text-light">
       <?php
@@ -247,42 +270,6 @@ if (isset($_GET['id'])) {
       } else {
         echo '<p>Detalhes da quadra não encontrados.</p>';
       }
-      echo '<br>';
-      ?>
-
-      <form method="POST" action="adicionar_comentario.php">
-        <input type="hidden" name="espaco_id" value="<?php echo $espaco_id; ?>">
-        <div class="form-group">
-          <label for="nome">Seu Nome:</label>
-          <input type="text" class="form-control" name="nome" required>
-        </div>
-        <div class="form-group">
-          <label for="comentario">Comentário:</label>
-          <textarea class="form-control" name="comentario" rows="4" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Enviar Comentário</button>
-      </form>
-      <?php
-
-      echo '<br>';
-      echo '<br>';
-      $sql_comentarios = "SELECT * FROM comentarios WHERE espaco_id = $espaco_id ORDER BY data_comentario DESC";
-      $result_comentarios = $conexao->query($sql_comentarios);
-
-      if ($result_comentarios->num_rows > 0) {
-        echo '<h3>Comentários:</h3>';
-        while ($row_comentario = $result_comentarios->fetch_assoc()) {
-          echo '<div class="card mb-3">';
-          echo '<div class="card-body">';
-          echo '<h5 class="card-title">' . $row_comentario['nome'] . '</h5>';
-          echo '<p class="card-text">' . $row_comentario['comentario'] . '</p>';
-          echo '<p class="card-text"><small class="text-muted">' . $row_comentario['data_comentario'] . '</small></p>';
-          echo '</div>';
-          echo '</div>';
-        }
-      } else {
-        echo '<p>Nenhum comentário encontrado.</p>';
-      }
       ?>
     </div>
 
@@ -295,7 +282,6 @@ if (isset($_GET['id'])) {
   <br>
   <br>
   <br>
-
 </body>
 
 </html>

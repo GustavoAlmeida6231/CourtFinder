@@ -91,12 +91,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="form-group">
                     <input class="form-control button btn-redefinir mr-2" type="submit" name="check-email" value="Enviar">
-                    <input class="form-control button btn-voltar mr-2 mt-2" type="submit" name="voltar" value="Voltar">
+                    <input id="botaoVoltar" class="form-control button btn-voltar mr-2 mt-2" type="button" name="voltar" value="Voltar">
                 </div>
                 <p class="text-center"><?php echo $msg ?></p>
             </form>
         </div>
     </div>
+    <script>
+    // Adicione um ouvinte de evento após o carregamento da página
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('botaoVoltar').addEventListener('click', function() {
+            window.history.back();
+        });
+    });
+</script>
+
 </body>
 
 </html>

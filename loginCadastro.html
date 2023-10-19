@@ -6,26 +6,79 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Usuário</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
     <link rel='stylesheet' type='text/css' media='screen' href='./css/index.css'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
+<style>
+    @keyframes slideDown {
+  from { 
+    transform: translateY(900px);
+  }
+  to {
+    transform: translateY(-20px); 
+  }
+}
 
+#container {
+  animation: slideDown 0.8s ease-in-out forwards;
+}
+</style>
 <body>
 
-    <nav>
-        <a class="logo" href="./index.html">CourtFinder</a>
-        <div class="mobile-menu">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
+    <nav class="navbar navbar-expand-lg shadow bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand ms-5 text-light" href="index.html">COURTFINDER</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1024px-Hamburger_icon.svg.png);"></span>
+          </button>
+          <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto mb-lg-2 mt-2 p-2">
+              <li class="nav-item me-3 p-2">
+                <a class="nav-link active text-light" aria-current="page" href="./index.html">HOME</a>
+              </li>
+              <li class="nav-item me-3 p-2">
+                <a class="nav-link active text-light" href="./index.php">MODALIDADES</a>
+              </li>
+              <li class="nav-item me-3 p-2">
+                <a class="nav-link active text-light" aria-current="page" href="#">QUEM SOMOS</a>
+              </li>
+              <li class="nav-item me-3 p-2">
+                <a class="nav-link active text-light" aria-current="page" href="./suaquadra.php">TENHA SUA QUADRA</a>
+              </li>
+              <li class="nav-item me-3 p-2">
+                <a class="nav-link active text-light" aria-current="page" href="./loginCadastro.html">LOGIN</a>
+              </li>
+              <div class="dropdown p-2" data-bs-theme="success">
+                  <button class="btn dropdown-toggle text-light form-control border-success" type="button" id="dropdownMenuButtonSuccess" data-bs-toggle="dropdown">
+                    Mais Opções!
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSuccess">
+                    <li><a class="dropdown-item text-light" href="#">Perfil</a></li>
+                    <li><a class="dropdown-item text-light" href="#">Configurações de Conta</a></li>
+                    <li><a class="dropdown-item text-light" href="#">Recentes</a></li>
+                    <li><a class="dropdown-item text-light" href="#">Cadastrar-se</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-light" href="#">Ajuda</a></li>
+                  </ul>
+                </div>
+            </ul>
+            <form class="d-flex p-1" role="search">
+              <input class="form-control me-2" list="datalistOptions" type="search" placeholder="Pesquisar" aria-label="Search">
+              <datalist id="datalistOptions">
+                <option value="Ajuda">
+                <option value="Sobre Nós">
+                <option value="Quadras">
+                <option value="Futebol">
+                <option value="Basquete">
+              </datalist>
+              <button class="btn form-control border-success text-light me-5" type="submit">Pesquisar</button>
+            </form>
+          </div>
         </div>
-        <ul class="nav-list">
-            <li><a href="./site/index.php">Home</a></li>
-            <li><a href="#">Modalidades</a></li>
-            <li><a href="./index.html">Quem somos</a></li>
-            <li><a href="#">Cadastre sua quadra</a></li>
-        </ul>
-    </nav>
+      </nav>
+      
 
     </div>
 
@@ -285,7 +338,7 @@
     </script>
 
 
-    <script src="./js/mobile-navbar.js"></script>
+    <script src="./js/loginCadastro.js"></script>
 
 </body>
 

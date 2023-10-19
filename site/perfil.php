@@ -105,33 +105,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
-    <nav class="navbar navbar-expand-sm navbar-dark cabecalho">
-        <div class="container-fluid ">
-            <a class="navbar-brand fs-3 position-absolute top--1 start-1" href="#">COURTFINDER </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon "></span>
-            </button>
-            <div class="collapse navbar-collapse fs-5 position-absolute top--1 start-50 translate-middle-x" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Modalidades</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Quem somos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Cadastre sua quadra</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg shadow bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand ms-5 text-light" href="index.html">COURTFINDER</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1024px-Hamburger_icon.svg.png);"></span>
+          </button>
+          <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto mb-lg-2 mt-2 p-2">
+              <li class="nav-item me-3 p-2">
+                <a class="nav-link active text-light" aria-current="page" href="./index.html">HOME</a>
+              </li>
+              <li class="nav-item me-3 p-2">
+                <a class="nav-link active text-light" href="./index.php">MODALIDADES</a>
+              </li>
+              <li class="nav-item me-3 p-2">
+                <a class="nav-link active text-light" aria-current="page" href="#">QUEM SOMOS</a>
+              </li>
+              <li class="nav-item me-3 p-2">
+                <a class="nav-link active text-light" aria-current="page" href="./suaquadra.php">TENHA SUA QUADRA</a>
+              </li>
+              <li class="nav-item me-3 p-2">
+                <a class="nav-link active text-light" aria-current="page" href="./loginCadastro.html">LOGIN</a>
+              </li>
+              <div class="dropdown p-2" data-bs-theme="success">
+                  <button class="btn dropdown-toggle text-light form-control border-success" type="button" id="dropdownMenuButtonSuccess" data-bs-toggle="dropdown">
+                    Mais Opções!
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSuccess">
+                    <li><a class="dropdown-item text-light" href="#">Perfil</a></li>
+                    <li><a class="dropdown-item text-light" href="#">Configurações de Conta</a></li>
+                    <li><a class="dropdown-item text-light" href="#">Recentes</a></li>
+                    <li><a class="dropdown-item text-light" href="#">Cadastrar-se</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-light" href="#">Ajuda</a></li>
+                  </ul>
+                </div>
+            </ul>
+            <form class="d-flex p-1" role="search">
+              <input class="form-control me-2" list="datalistOptions" type="search" placeholder="Pesquisar" aria-label="Search">
+              <datalist id="datalistOptions">
+                <option value="Ajuda">
+                <option value="Sobre Nós">
+                <option value="Quadras">
+                <option value="Futebol">
+                <option value="Basquete">
+              </datalist>
+              <button class="btn form-control border-success text-light me-5" type="submit">Pesquisar</button>
+            </form>
+          </div>
         </div>
-    </nav>
+      </nav>
 
 
     <div class="container-fluid">
