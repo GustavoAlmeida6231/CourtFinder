@@ -128,12 +128,13 @@
     }
 
     .btn {
-    margin-left: 55px !important;
-    margin-top: 20px !important;
-  }
-   .dropdown-toggle {
-     margin-left: 0% !important;
-   }
+      margin-left: 55px !important;
+      margin-top: 20px !important;
+    }
+
+    .dropdown-toggle {
+      margin-left: 0% !important;
+    }
   }
 </style>
 
@@ -150,24 +151,33 @@
             <a class="nav-link active text-light" aria-current="page" href="../">HOME</a>
           </li>
           <li class="nav-item me-3 p-2">
-            <a class="nav-link active text-light" aria-current="page" href="./cadastrarQuadra.php">CADASTRE SUA QUADRA</a>
+            <?php
+            if (isset($_SESSION['usuario_id'])) {
+              echo '<a class="nav-link active text-light" aria-current="page" href="./cadastrarQuadra.php">CADASTRE SUA QUADRA</a>';
+            }
+            ?>
           </li>
           <li class="nav-item me-3 p-2">
-            <a class="nav-link active text-light" aria-current="page" href="../suaquadra.php">TENHA SUA QUADRA</a>
+            <?php
+            if (!isset($_SESSION['usuario_id'])) {
+              echo '<a class="nav-link active text-light" aria-current="page" href="../suaquadra.php">TENHA SUA QUADRA</a>';
+            }
+            ?>
           </li>
           <div class="dropdown p-2" data-bs-theme="success">
-            <button class="btn dropdown-toggle text-light form-control border-success" type="button" id="dropdownMenuButtonSuccess" data-bs-toggle="dropdown">
-              Mais Opções!
-            </button>
+            <?php
+            if (isset($_SESSION['usuario_id'])) {
+              echo '<button class="btn dropdown-toggle text-light form-control border-success" type="button" id="dropdownMenuButtonSuccess" data-bs-toggle="dropdown">Mais Opções!</button>';
+            }
+            ?>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSuccess">
               <li><a class="dropdown-item text-light" href="../loginCadastro.html">Perfil</a></li>
               <li><a class="dropdown-item text-light" href="#">Configurações de Conta</a></li>
               <li><a class="dropdown-item text-light" href="#">Recentes</a></li>
-              <li><a class="dropdown-item text-light" href="#">Cadastrar-se</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item text-light" href="#">Ajuda</a></li>
+              <li><a class="dropdown-item text-light" href="../configuracoes/logout.php">logout</a></li>
             </ul>
           </div>
         </ul>
@@ -217,7 +227,6 @@
       <?php
       include_once('../configuracoes/config.php');
 
-      // Consulta para obter os dados
       $sql = "SELECT * FROM courtfinder.quadra";
       $result = $conexao->query($sql);
 
@@ -231,12 +240,10 @@
 
         $result = $conexao->query($sql);
       } else {
-        // Se o formulário não foi enviado, exibir todas as quadradas
         $sql = "SELECT * FROM courtfinder.quadra";
         $result = $conexao->query($sql);
       }
 
-      // Verifica se há resultados
       if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
           $nome_espaco = $row['nome_espaco'];
@@ -248,7 +255,6 @@
           $conteudo = $row['img_conteudo'];
           $imagemData = base64_encode($conteudo);
 
-          // Criação do card HTML
           echo '<div class="col-md-4 mt-5">';
           echo '<div class="card rounded">';
           echo '<a href="descricao.php?id=' . $id_espaco . '">';
@@ -281,7 +287,6 @@
       } else {
       }
 
-      // Fecha a conexão com o banco de dados
       $conexao->close();
       ?>
     </div>

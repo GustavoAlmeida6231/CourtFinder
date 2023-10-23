@@ -4,8 +4,6 @@ session_start();
 ini_set('default_charset', 'utf-8');
 
 if (isset($_POST['login'])) {
-
-    // Conexão com o banco de dados
     include_once('./config.php');
 
     $login = $_POST['login'];
@@ -33,4 +31,5 @@ if (isset($_POST['login'])) {
 
     $conexao->close();
 }
+
 ?>

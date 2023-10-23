@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <a href="./loginCadastro.html" class="logo-link">
+    <a href="../loginCadastro.html" class="logo-link">
         <span class="text-hover-green">COURTFINDER ®</span>
     </a>
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">

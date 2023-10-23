@@ -31,7 +31,7 @@ if (isset($_GET['id'])) {
   <?php
   ini_set('default_charset', 'utf-8');
   if (!isset($_SESSION['usuario_id'])) {
-    echo '<p>Usuario não logado, realizar <a href="../loginCadastro.html">Login</a></p>';
+    header("Location:../loginCadastro.html");;
     exit();
   }
   ?>
@@ -186,14 +186,14 @@ if (isset($_GET['id'])) {
               Mais Opções!
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButtonSuccess">
-              <li><a class="dropdown-item text-light" href="../loginCadastro.html">Perfil</a></li>
+              <li><a class="dropdown-item text-light" href="../site/perfil.php">Perfil</a></li>
               <li><a class="dropdown-item text-light" href="#">Configurações de Conta</a></li>
               <li><a class="dropdown-item text-light" href="#">Recentes</a></li>
               <li><a class="dropdown-item text-light" href="#">Cadastrar-se</a></li>
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item text-light" href="#">Ajuda</a></li>
+              <li><a class="dropdown-item text-light" href="../configuracoes/logout.php">logout</a></li>
             </ul>
           </div>
         </ul>
@@ -295,6 +295,7 @@ if (isset($_GET['id'])) {
         echo '<p>Ocorreu um erro: ' . $e->getMessage() . '</p>';
       }
       ?>
+
 
     </div>
 

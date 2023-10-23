@@ -3,6 +3,7 @@ ini_set('default_charset', 'utf-8');
 session_start();
 include_once('../configuracoes/config.php');
 if (!isset($_SESSION['usuario_id'])) {
+    echo'dshdksjdkjak';
     exit;
 }
 $sql = "SELECT login, email, regiao, celular, dataNascimento, password , nivel FROM cadastro_usuario WHERE id = {$_SESSION['usuario_id']}";

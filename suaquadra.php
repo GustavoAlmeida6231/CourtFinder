@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
             $mail->Username   = 'CourtFinder66';
-            $mail->Password   = 'weyxupkyecnpzaky';
+            $mail->Password   = 'kgkmilnunfaofqsw';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port       = 465;
 
@@ -63,6 +63,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->close();
     $conexao->close();
 }
+if (isset($_SERVER['HTTP_REFERER'])) {
+    $previous_page = $_SERVER['HTTP_REFERER'];
+} else {
+    $previous_page = "index.html";
+}
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <a href="./index.html" class="logo-link">
+    <a href="<?php echo $previous_page; ?>" class="logo-link">
         <span class="text-hover-green">COURTFINDER ®</span>
     </a>
     <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
